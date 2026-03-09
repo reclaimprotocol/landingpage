@@ -5,6 +5,13 @@ import sharp from 'sharp';
 
 export async function POST(request: NextRequest) {
   try {
+    // Debug: Log environment variables status
+    console.log('Environment check:', {
+      hasQwenKey: !!process.env.QWEN_API_KEY,
+      hasOpenAIKey: !!process.env.OPENAI_API_KEY,
+      qwenKeyLength: process.env.QWEN_API_KEY?.length || 0,
+    });
+
     const formData = await request.formData();
     const imageFile = formData.get('image') as File; // Frontend sends converted image
     const originalFile = formData.get('originalFile') as File; // Original PDF for editing
@@ -96,10 +103,9 @@ async function callQwenWithOpenAI(
 ): Promise<AIResponse> {
   try {
     const qwenKey = process.env.QWEN_API_KEY;
-    const openaiKey = process.env.OPENAI_API_KEY;
 
-    if (!qwenKey || !openaiKey) {
-      console.error('QWEN_API_KEY or OPENAI_API_KEY not found');
+    if (!qwenKey) {
+      console.error('QWEN_API_KEY not found');
       return { success: false, error: 'API keys missing' };
     }
 
