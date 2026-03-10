@@ -2,25 +2,21 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument } from 'pdf-lib';
 import { createCanvas, loadImage } from 'canvas';
 import sharp from 'sharp';
-import { jobStore } from '@/lib/job-store';
-import crypto from 'crypto';
 
-// Set timeout to 30 seconds (Amplify limit)
-export const maxDuration = 30;
+// Set timeout to 5 minutes for Vercel
+export const maxDuration = 300;
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
-    // Debug: Log environment variables status
     console.log('Environment check:', {
       hasQwenKey: !!process.env.QWEN_API_KEY,
-      hasOpenAIKey: !!process.env.OPENAI_API_KEY,
       qwenKeyLength: process.env.QWEN_API_KEY?.length || 0,
     });
 
     const formData = await request.formData();
-    const imageFile = formData.get('image') as File; // Frontend sends converted image
-    const originalFile = formData.get('originalFile') as File; // Original PDF for editing
+    const imageFile = formData.get('image') as File;
+    const originalFile = formData.get('originalFile') as File;
     const prompt = formData.get('prompt') as string;
     const model = (formData.get('model') as string) || 'qwen3';
 
@@ -31,75 +27,33 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate unique job ID
-    const jobId = crypto.randomBytes(16).toString('hex');
-
-    // Create job in store
-    jobStore.create(jobId);
-
     // Convert image to base64
     const imageBytes = await imageFile.arrayBuffer();
     const imageBuffer = Buffer.from(imageBytes);
     const imageBase64 = imageBuffer.toString('base64');
 
-    // Get filename for later
-    const filename = originalFile ? originalFile.name : imageFile.name;
-    const isPDF = !!originalFile;
-
-    // Start async processing (don't await)
-    processDocumentAsync(jobId, imageBase64, prompt, model, imageFile.type, isPDF, filename);
-
-    // Return job ID immediately
-    return NextResponse.json({
-      jobId,
-      message: 'Job started. Poll /api/job-status/{jobId} for progress.'
-    });
-
-  } catch (error) {
-    console.error('Error starting job:', error);
-    return NextResponse.json(
-      { error: 'Failed to start job' },
-      { status: 500 }
-    );
-  }
-}
-
-// Async processing function
-async function processDocumentAsync(
-  jobId: string,
-  imageBase64: string,
-  prompt: string,
-  model: string,
-  imageType: string,
-  isPDF: boolean,
-  filename: string
-) {
-  try {
-    jobStore.update(jobId, { status: 'processing' });
-
     // Call the selected AI model to get edited image directly
-    console.log(`🤖 [Job ${jobId}] Using ${model} pipeline to generate edited image...`);
+    console.log(`🤖 Using ${model} pipeline to generate edited image...`);
     let aiResponse: AIResponse;
 
     switch (model) {
       case 'gpt':
-        aiResponse = await callGPTWithDALLE(imageBase64, prompt, imageType);
+        aiResponse = await callGPTWithDALLE(imageBase64, prompt, imageFile.type);
         break;
       case 'qwen3':
       default:
-        aiResponse = await callQwenWithOpenAI(imageBase64, prompt, imageType);
+        aiResponse = await callQwenWithOpenAI(imageBase64, prompt, imageFile.type);
         break;
     }
 
     if (!aiResponse.success || !aiResponse.editedImageBase64) {
-      jobStore.update(jobId, {
-        status: 'failed',
-        error: aiResponse.error || 'Failed to generate edited image'
-      });
-      return;
+      return NextResponse.json(
+        { error: aiResponse.error || 'Failed to generate edited image' },
+        { status: 500 }
+      );
     }
 
-    console.log(`✅ [Job ${jobId}] Received edited image from AI`);
+    console.log('✅ Received edited image from AI');
 
     // Convert base64 to buffer
     const editedImageBuffer = Buffer.from(aiResponse.editedImageBase64, 'base64');
@@ -107,34 +61,33 @@ async function processDocumentAsync(
     // Convert edited image back to PDF if original was PDF
     let finalDocument: Buffer;
     let contentType: string;
+    let filename: string;
 
-    if (isPDF) {
-      console.log(`📄 [Job ${jobId}] Converting edited image back to PDF...`);
+    if (originalFile) {
+      console.log('📄 Converting edited image back to PDF...');
       finalDocument = await imageToPDF(editedImageBuffer);
       contentType = 'application/pdf';
+      filename = originalFile.name;
     } else {
       finalDocument = editedImageBuffer;
       contentType = 'image/png';
+      filename = imageFile.name;
     }
 
-    // Store result as base64
-    const resultBase64 = finalDocument.toString('base64');
-
-    jobStore.update(jobId, {
-      status: 'completed',
-      result: resultBase64,
-      contentType,
-      filename: `edited-${filename}`,
+    // Return the edited document
+    return new NextResponse(new Uint8Array(finalDocument), {
+      headers: {
+        'Content-Type': contentType,
+        'Content-Disposition': `attachment; filename="edited-${filename}"`,
+      },
     });
-
-    console.log(`✅ [Job ${jobId}] Processing complete`);
 
   } catch (error) {
-    console.error(`❌ [Job ${jobId}] Error processing document:`, error);
-    jobStore.update(jobId, {
-      status: 'failed',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    });
+    console.error('Error processing document:', error);
+    return NextResponse.json(
+      { error: 'Something went wrong, please try again' },
+      { status: 500 }
+    );
   }
 }
 
