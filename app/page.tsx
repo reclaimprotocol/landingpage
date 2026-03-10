@@ -110,38 +110,44 @@ export default function Home() {
       formData.append('prompt', 'Change the value of ' + prompt);
       formData.append('model', 'qwen3');
 
+      // Step 1: Start the job
       const response = await fetch('/api/edit-document', {
         method: 'POST',
         body: formData,
       });
 
+      if (!response.ok) {
+        throw new Error('Failed to start job');
+      }
+
+      const { jobId } = await response.json();
+      console.log('Job started:', jobId);
+
+      // Step 2: Poll for completion
+      const result = await pollJobStatus(jobId);
       const processingTime = Math.round((Date.now() - startTime) / 1000);
 
-      if (response.ok) {
-        const blob = await response.blob();
-        const contentType = response.headers.get('content-type');
-
-        // Check if it's a PDF or image
-        if (contentType?.includes('pdf') || contentType?.includes('image')) {
-          const url = URL.createObjectURL(blob);
-          setModalContent({
-            type: 'success',
-            message: 'Your edited document is ready',
-            downloadUrl: url,
-            processingTime
-          });
-          setShowModal(true);
-        } else {
-          setModalContent({
-            type: 'error',
-            message: 'Something went wrong, please try again'
-          });
-          setShowModal(true);
+      if (result.status === 'completed' && result.result) {
+        // Convert base64 to blob
+        const binaryString = atob(result.result);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
         }
-      } else {
+        const blob = new Blob([bytes], { type: result.contentType });
+        const url = URL.createObjectURL(blob);
+
+        setModalContent({
+          type: 'success',
+          message: 'Your edited document is ready',
+          downloadUrl: url,
+          processingTime
+        });
+        setShowModal(true);
+      } else if (result.status === 'failed') {
         setModalContent({
           type: 'error',
-          message: 'Something went wrong, please try again'
+          message: result.error || 'Something went wrong, please try again'
         });
         setShowModal(true);
       }
@@ -155,6 +161,28 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const pollJobStatus = async (jobId: string): Promise<any> => {
+    const maxAttempts = 60; // 5 minutes max (5 second intervals)
+    let attempts = 0;
+
+    while (attempts < maxAttempts) {
+      const response = await fetch(`/api/job-status/${jobId}`);
+      const data = await response.json();
+
+      console.log('Job status:', data.status);
+
+      if (data.status === 'completed' || data.status === 'failed') {
+        return data;
+      }
+
+      // Wait 5 seconds before next poll
+      await new Promise(resolve => setTimeout(resolve, 5000));
+      attempts++;
+    }
+
+    throw new Error('Job timeout - took too long to complete');
   };
 
   return (

@@ -16,3 +16,8 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
+customHeaders:
+  - pattern: '/api/**'
+    headers:
+      - key: 'Cache-Control'
+        value: 'no-cache'
