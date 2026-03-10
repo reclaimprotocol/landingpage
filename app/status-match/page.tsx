@@ -12,7 +12,7 @@ export default function StatusMatch() {
             {/* Left side - Text and CTAs */}
             <div className="text-left">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Verify Status on Airlines, Hotels, Cruises and other Travel Apps
+                Verify status in seconds, not weeks. With Zero fraud.
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8">
                 Instant loyalty tier verification. 100+ airline and hotel programs. No screenshots.
@@ -83,6 +83,88 @@ export default function StatusMatch() {
                 alt="Loyalty Awards Winner"
                 className="award-image"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison Table Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="overflow-x-auto">
+            <table className="comparison-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Loyalty Status Co</th>
+                  <th className="highlight-column">Reclaim Protocol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="row-label">Time taken</td>
+                  <td>2 weeks</td>
+                  <td className="highlight-column">30s</td>
+                </tr>
+                <tr>
+                  <td className="row-label">Cost</td>
+                  <td>$100+ per verification</td>
+                  <td className="highlight-column">90% cheaper</td>
+                </tr>
+                <tr>
+                  <td className="row-label">Audience Relationship</td>
+                  <td>Theirs</td>
+                  <td className="highlight-column">Yours</td>
+                </tr>
+                <tr>
+                  <td className="row-label">Verification process</td>
+                  <td>Document/Screenshot upload</td>
+                  <td className="highlight-column">Cryptographic verification</td>
+                </tr>
+                <tr>
+                  <td className="row-label">Defraudability</td>
+                  <td>Easy</td>
+                  <td className="highlight-column">Impossible</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="how-it-works-section py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-16">
+            The only fraudproof, instant status verification
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Step 1 */}
+            <div className="step-card">
+              <div className="step-number">1</div>
+              <h3 className="step-title">User logs in</h3>
+              <p className="step-description">
+                User logs in into airline/hotel where they have status
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="step-card">
+              <div className="step-number">2</div>
+              <h3 className="step-title">Status is extracted and verified</h3>
+              <p className="step-description">
+                Reclaim Protocol extracts and verifies their status
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="step-card">
+              <div className="step-number">3</div>
+              <h3 className="step-title">Verification result sent</h3>
+              <p className="step-description">
+                Reclaim Protocol sends verification result to you, for you to process the status-match request
+              </p>
             </div>
           </div>
         </div>
@@ -188,7 +270,7 @@ export default function StatusMatch() {
       <section className="verify-seconds-section py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            Verify in seconds, not weeks
+            Verify status in seconds, not weeks
           </h2>
           <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-8">
             Give a great experience to your customers by verifying instantly, without requiring any human reviews. Confidently.
