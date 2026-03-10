@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { siteConfig } from '@/config/site';
+import { customerLogos } from '@/config/logos';
+import { accordionItems } from '@/config/accordion';
 
 export default function Home() {
   const [selectedUsecase, setSelectedUsecase] = useState(0);
@@ -11,6 +13,7 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<{ type: 'success' | 'error', message: string, downloadUrl?: string, processingTime?: number }>({ type: 'success', message: '' });
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [activeAccordion, setActiveAccordion] = useState<number | null>(0);
 
   const usecases = [
     {
@@ -336,7 +339,7 @@ export default function Home() {
       <section className="how-it-works-section py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-4">
-            How it works : 30 seconds. 3 steps.
+            How Reclaim Protocol works : 30 seconds. 3 steps.
           </h2>
           <p className="text-2xl md:text-3xl font-bold text-slate-500 text-center mb-16">
             3M verifications. 0 forged.
@@ -381,7 +384,7 @@ export default function Home() {
               One protocol. Every verification problem.
             </h2>
             <p className="text-xl text-white/80">
-              Every use case works in any country, from any source, in 30 seconds.
+              If fraud is a problem, Reclaim Protocol is the solution. Globally.
             </p>
           </div>
 
@@ -477,15 +480,74 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
             We've processed over 3 million verifications with zero fraud across identity, student, employment, and loyalty verification.
           </h2>
-          <p className="text-lg text-slate-500 mb-8">
-            We can't name most of our customers yet, but we'd love to show you on a call.
-          </p>
           <button
             className="btn-primary"
             onClick={() => window.location.href = siteConfig.bookingUrl}
           >
             Talk to the founder
           </button>
+        </div>
+      </section>
+
+      {/* Customer Logos Carousel */}
+      <section className="logos-carousel-section py-16 overflow-hidden">
+        <div className="logos-carousel">
+          <div className="logos-track">
+            {/* Duplicate logos for seamless loop */}
+            {[...customerLogos, ...customerLogos].map((logo, index) => (
+              <a
+                key={index}
+                href={logo.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="logo-carousel-item"
+                title={logo.hoverText}
+              >
+                <img src={logo.logoPath} alt={logo.name} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Accordion Section */}
+      <section className="accordion-section py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="accordion-container">
+            {accordionItems.map((item, index) => (
+              <div key={index} className="accordion-item">
+                <button
+                  className={`accordion-header ${activeAccordion === index ? 'active' : ''}`}
+                  onClick={() => setActiveAccordion(activeAccordion === index ? null : index)}
+                >
+                  <span className="accordion-title">{item.title}</span>
+                  {activeAccordion === index ? (
+                    <a
+                      href={item.learnMoreUrl}
+                      className="accordion-learn-more"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Learn more
+                    </a>
+                  ) : (
+                    <span className="accordion-icon">+</span>
+                  )}
+                </button>
+                <div className={`accordion-content ${activeAccordion === index ? 'active' : ''}`}>
+                  <div className="accordion-image-container">
+                    <img src={item.image} alt={item.title} className="accordion-image" />
+                  </div>
+                  <div className="accordion-bullets">
+                    {item.bulletPoints.map((point, i) => (
+                      <div key={i} className="bullet-point">
+                        <p className="bullet-text">{point}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -572,8 +634,53 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Integration Section */}
+      <section className="integration-section py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column */}
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                10 lines of code for integration
+              </h2>
+              <p className="text-lg text-slate-600 mb-8">
+                We have support for SDKs in React, React Native, Flutter, Python, Kotlin and Swift. No matter what your product architecture is, integration takes less than an hour.
+              </p>
+              <button
+                className="btn-primary"
+                onClick={() => window.location.href = siteConfig.docsUrl}
+              >
+                Visit Docs
+              </button>
+            </div>
+
+            {/* Right Column - Code Snippet */}
+            <div className="code-snippet-container">
+              <pre className="code-snippet">
+                <code>
+                  <span className="keyword">import</span> {'{ '}
+                  <span className="class">ReclaimProofRequest</span>
+                  {' }'} <span className="keyword">from</span> <span className="string">'@reclaimprotocol/js-sdk'</span>;
+                  {'\n\n'}
+                  <span className="keyword">const</span> <span className="variable">reclaimProofRequest</span> = <span className="keyword">await</span> <span className="class">ReclaimProofRequest</span>.<span className="function">init</span>(
+                  {'\n    '}
+                  <span className="string">'APP_ID'</span>,
+                  {'\n    '}
+                  <span className="string">'APP_SECRET'</span>,
+                  {'\n    '}
+                  <span className="string">'PROVIDER_ID'</span>
+                  {'\n'});
+                  {'\n\n'}
+                  <span className="keyword">await</span> <span className="variable">reclaimProofRequest</span>.<span className="function">triggerReclaimFlow</span>();
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA Section */}
-      <section className="final-cta-section py-20 px-6">
+      <section className="final-cta-section bg-orange-500 py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
             Every document can be forged. See what can't be.
