@@ -285,7 +285,7 @@ export default function StatusMatch() {
 
         {/* Footer */}
         <footer className="footer-content max-w-7xl mx-auto mt-20 pt-12 border-t border-white/20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             {/* Product Column */}
             <div>
               <h4 className="text-white font-bold text-lg mb-4">Product</h4>
@@ -313,9 +313,20 @@ export default function StatusMatch() {
             <div>
               <h4 className="text-white font-bold text-lg mb-4">Company</h4>
               <ul className="footer-links">
-                <li><a href="#about">About</a></li>
+                <li><a href="https://www.ycombinator.com/companies/reclaim-protocol" target="_blank" rel="noopener noreferrer">About</a></li>
                 <li><a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">Contact</a></li>
                 <li><a href={siteConfig.careersUrl} target="_blank" rel="noopener noreferrer">Careers</a></li>
+              </ul>
+            </div>
+
+            {/* Community Column */}
+            <div>
+              <h4 className="text-white font-bold text-lg mb-4">Community</h4>
+              <ul className="footer-links">
+                <li><a href="https://www.linkedin.com/company/reclaimprotocol" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="https://x.com/reclaimprotocol" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="https://t.me/protocolreclaim" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+                <li><a href="mailto:support@reclaimprotocol.org">Support</a></li>
               </ul>
             </div>
           </div>
