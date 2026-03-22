@@ -137,6 +137,28 @@ export default function StatusMatch() {
         </div>
       </section>
 
+      {/* Blog Link Section */}
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <a
+            href="https://blog.reclaimprotocol.org/blog/posts/state-of-statusmatch-2026/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="blog-card-link"
+          >
+            <img
+              src="https://blog.reclaimprotocol.org/blog/posts/state-of-statusmatch-2026/banner.png"
+              alt="State of Status Match 2026"
+              className="blog-card-thumbnail"
+            />
+            <div className="blog-card-text">
+              <h3 className="blog-card-title">Read our blog</h3>
+              <p className="blog-card-subtitle">State of Status Match 2026</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section className="how-it-works-section py-20 px-6">
         <div className="max-w-5xl mx-auto">
