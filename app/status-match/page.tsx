@@ -35,12 +35,17 @@ export default function StatusMatch() {
 
             {/* Right side - Screenshot with callout */}
             <div className="flex justify-center lg:justify-end">
-              <div className="screenshot-container">
+              <a
+                href="https://chatgpt.com/share/69b08790-e158-8003-9cdc-bd718b87a92a"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="screenshot-container"
+              >
                 <img src="/delta-fake.png" alt="Delta Screenshot" className="screenshot-image" />
                 <div className="fake-callout">
                   <p>This is a fake screenshot. Can your system catch it?</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>

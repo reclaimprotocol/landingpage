@@ -1,5 +1,5 @@
 export const siteConfig = {
-  bookingUrl: 'https://app.reclaim.ai/m/subhash/clients',
+  bookingUrl: 'https://calendly.com/madhavanmalolan/call',
   docsUrl: 'https://docs.reclaimprotocol.org',
   blogUrl: 'https://blog.reclaimprotocol.org',
   apiKeysUrl: 'https://dev.reclaimprotocol.org',

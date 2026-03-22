@@ -14,7 +14,7 @@ export const accordionItems: AccordionItem[] = [
       'Conversion went from 7% (Document verification) to 44% (Reclaim Protocol)',
       'Available in all countries including Bangladesh, Indonesia, India',
     ],
-    learnMoreUrl: 'https://app.reclaim.ai/m/subhash/clients',
+    learnMoreUrl: 'https://calendly.com/madhavanmalolan/call',
   },
   {
     title: 'Europe\'s top Airlines verifies status instantly for a status-match',

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { siteConfig } from '@/config/site';
 import { customerLogos } from '@/config/logos';
 import { accordionItems } from '@/config/accordion';
@@ -11,9 +11,29 @@ export default function Home() {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState<{ type: 'success' | 'error', message: string, downloadUrl?: string, processingTime?: number }>({ type: 'success', message: '' });
+  const [modalContent, setModalContent] = useState<{ type: 'success' | 'error', message: string, downloadUrl?: string, processingTime?: number, isImage?: boolean }>({ type: 'success', message: '' });
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<number | null>(0);
+  const [progress, setProgress] = useState(0);
+  const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (loading) {
+      setProgress(0);
+      progressInterval.current = setInterval(() => {
+        setProgress((prev) => (prev < 95 ? prev + 1 : prev));
+      }, 1000);
+    } else {
+      if (progressInterval.current) {
+        clearInterval(progressInterval.current);
+        progressInterval.current = null;
+      }
+      setProgress(0);
+    }
+    return () => {
+      if (progressInterval.current) clearInterval(progressInterval.current);
+    };
+  }, [loading]);
 
   const usecases = [
     {
@@ -131,7 +151,8 @@ export default function Home() {
             type: 'success',
             message: 'Your edited document is ready',
             downloadUrl: url,
-            processingTime
+            processingTime,
+            isImage: contentType?.includes('image') ?? false
           });
           setShowModal(true);
         } else {
@@ -261,9 +282,17 @@ export default function Home() {
               <button
                 onClick={handleSubmit}
                 disabled={loading || !uploadedFile || !prompt || !agreedToTerms}
-                className="widget-submit-btn"
+                className={`widget-submit-btn ${loading ? 'is-loading' : ''}`}
               >
-                {loading ? '⚡ Processing...' : '🔧 Generate fake document'}
+                {loading && (
+                  <div
+                    className="btn-progress-fill"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+                <span className="btn-label">
+                  {loading ? '⚡ Processing...' : '🔧 Generate fake document'}
+                </span>
               </button>
             </div>
           </div>
@@ -284,21 +313,37 @@ export default function Home() {
               {modalContent.type === 'success' && modalContent.downloadUrl ? (
                 <>
                   <div className="modal-two-column">
-                    {/* Left column - PDF Preview */}
+                    {/* Left column - Preview */}
                     <div className="modal-left-column">
-                      <a
-                        href={modalContent.downloadUrl}
-                        download={`edited-${uploadedFile?.name}`}
-                        className="pdf-preview-link"
-                      >
-                        <div className="pdf-preview">
-                          <iframe
-                            src={modalContent.downloadUrl}
-                            className="pdf-preview-iframe"
-                            title="Document Preview"
-                          />
-                        </div>
-                      </a>
+                      <div className="preview-wrapper">
+                        {modalContent.isImage ? (
+                          <div className="image-preview">
+                            <img
+                              src={modalContent.downloadUrl}
+                              alt="Edited document"
+                              className="image-preview-img"
+                            />
+                          </div>
+                        ) : (
+                          <div className="pdf-preview">
+                            <iframe
+                              src={`${modalContent.downloadUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+                              className="pdf-preview-iframe"
+                              title="Document Preview"
+                            />
+                          </div>
+                        )}
+                        <a
+                          href={modalContent.downloadUrl}
+                          download={`edited-${uploadedFile?.name}`}
+                          className="preview-download-btn"
+                          title="Download"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1v10M8 11L4 7M8 11l4-4M2 14h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </a>
+                      </div>
                     </div>
 
                     {/* Right column - Title and Protection Info */}

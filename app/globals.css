@@ -634,6 +634,28 @@ body {
   opacity: 0.6;
 }
 
+.widget-submit-btn.is-loading {
+  background: linear-gradient(135deg, #0000cc 0%, #0000aa 100%);
+  opacity: 1;
+  cursor: wait;
+  box-shadow: 0 8px 20px rgba(0, 0, 238, 0.3);
+}
+
+.btn-label {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  transition: width 1s linear;
+}
+
 /* Widget Responsive Styles */
 @media (max-width: 1024px) {
   .document-editor-widget {
@@ -785,9 +807,8 @@ body {
   flex-direction: column;
 }
 
-.pdf-preview-link {
-  display: block;
-  cursor: pointer;
+.preview-wrapper {
+  position: relative;
 }
 
 .pdf-preview {
@@ -809,6 +830,54 @@ body {
   width: 100%;
   height: 100%;
   border: none;
+  pointer-events: none;
+}
+
+.image-preview {
+  width: 100%;
+  border: 2px solid #e2e8f0;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.image-preview:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.preview-download-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.preview-download-btn:hover {
+  background: white;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-right-column {
@@ -1190,6 +1259,13 @@ body {
   overflow: visible;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   max-width: 280px;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.screenshot-container:hover {
+  transform: scale(1.02);
 }
 
 @media (max-width: 768px) {
@@ -1485,6 +1561,18 @@ body {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .logos-track {
+    gap: 2.5rem;
+    animation-duration: 15s;
+  }
+
+  .logo-carousel-item {
+    width: 120px;
+    height: 60px;
+  }
 }
 
 /* Social Proof Section */
