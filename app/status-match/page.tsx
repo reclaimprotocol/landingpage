@@ -101,35 +101,35 @@ export default function StatusMatch() {
               <thead>
                 <tr>
                   <th></th>
-                  <th>Loyalty Status Co</th>
+                  <th>Traditional Verification</th>
                   <th className="highlight-column">Reclaim Protocol</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td className="row-label">Time taken</td>
-                  <td>2 weeks</td>
-                  <td className="highlight-column">30s</td>
+                  <td>Days to weeks</td>
+                  <td className="highlight-column">~30 seconds</td>
                 </tr>
                 <tr>
                   <td className="row-label">Cost</td>
-                  <td>$100+ per verification</td>
-                  <td className="highlight-column">90% cheaper</td>
+                  <td>Higher per-verification cost</td>
+                  <td className="highlight-column">Up to 90% lower</td>
                 </tr>
                 <tr>
                   <td className="row-label">Audience Relationship</td>
-                  <td>Theirs</td>
-                  <td className="highlight-column">Yours</td>
+                  <td>Managed by third party</td>
+                  <td className="highlight-column">Direct — you own the relationship</td>
                 </tr>
                 <tr>
                   <td className="row-label">Verification process</td>
-                  <td>Document/Screenshot upload</td>
-                  <td className="highlight-column">Cryptographic verification</td>
+                  <td>Manual document / screenshot review</td>
+                  <td className="highlight-column">Automated cryptographic verification</td>
                 </tr>
                 <tr>
-                  <td className="row-label">Defraudability</td>
-                  <td>Easy</td>
-                  <td className="highlight-column">Impossible</td>
+                  <td className="row-label">Fraud resistance</td>
+                  <td>Vulnerable to forged screenshots & documents</td>
+                  <td className="highlight-column">Cryptographically secured at source</td>
                 </tr>
               </tbody>
             </table>
