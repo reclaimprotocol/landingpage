@@ -141,7 +141,7 @@ export default function StatusMatch() {
       <section className="py-12 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <a
-            href="https://blog.reclaimprotocol.org/blog/posts/state-of-statusmatch-2026/"
+            href="https://blog.reclaimprotocol.org/posts/state-of-statusmatch-2026/"
             target="_blank"
             rel="noopener noreferrer"
             className="blog-card-link"
