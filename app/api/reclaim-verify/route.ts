@@ -9,12 +9,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Provider ID is required' }, { status: 400 });
     }
 
-    console.log('Reclaim verify request:', {
-      appId: process.env.RECLAIMPROTOCOL_APP_ID,
-      appSecret: process.env.RECLAIMPROTOCOL_APP_SECRET,
-      providerId,
-    });
-
     const reclaimProofRequest = await ReclaimProofRequest.init(
       process.env.RECLAIMPROTOCOL_APP_ID!,
       process.env.RECLAIMPROTOCOL_APP_SECRET!,
@@ -22,8 +16,6 @@ export async function POST(request: NextRequest) {
     );
 
     const proofRequestUrl = await reclaimProofRequest.getRequestUrl();
-
-    console.log('Generated verification URL:', proofRequestUrl);
 
     return NextResponse.json({ url: proofRequestUrl });
   } catch (error) {
