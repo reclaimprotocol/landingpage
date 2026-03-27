@@ -444,13 +444,14 @@ export default function Home() {
                 >
                   <h3 className="usecase-name">{usecase.name}</h3>
                   <p className="usecase-description">{usecase.description}</p>
-                  {selectedUsecase === index && (index === 0 || index === 1) && (
+                  {selectedUsecase === index && (index === 0 || index === 1 || index === 3) && (
                     <button
                       className="learn-more-btn"
                       onClick={(e) => {
                         e.stopPropagation();
                         if (index === 0) window.location.href = '/status-match';
                         if (index === 1) window.location.href = '/education';
+                        if (index === 3) window.location.href = '/identity';
                       }}
                     >
                       Learn more
@@ -748,7 +749,7 @@ export default function Home() {
                 <li><a href="/status-match">Status Match</a></li>
                 <li><a href="/education">Education</a></li>
                 <li><a href="#employment">Employment</a></li>
-                <li><a href="#id-verification">ID Verification</a></li>
+                <li><a href="/identity">ID Verification</a></li>
               </ul>
             </div>
 
