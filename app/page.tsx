@@ -37,9 +37,9 @@ export default function Home() {
 
   const usecases = [
     {
-      name: "Status Match",
-      description: "Instant loyalty tier verification. 100+ airline and hotel programs. No screenshots.",
-      video: "/videos/status-match.mp4"
+      name: "Age and Identity Verification",
+      description: "Age Verification OFCOM-ready. No selfies. No documents. No PII stored. Verify directly from Govt Portals and Banks.",
+      video: "/videos/id-verification.mp4"
     },
     {
       name: "Education Verification",
@@ -52,9 +52,9 @@ export default function Home() {
       video: "/videos/employment.mp4"
     },
     {
-      name: "ID Verification",
-      description: "Verify age, identity, and citizenship from official sources. 200+ countries. No ID uploads. No privacy laws violations.",
-      video: "/videos/id-verification.mp4"
+      name: "Status Match",
+      description: "Instant loyalty tier verification. 100+ airline and hotel programs. No screenshots.",
+      video: "/videos/status-match.mp4"
     }
   ];
 
@@ -426,7 +426,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              One protocol. Every verification problem.
+              What do you need to verify?
             </h2>
             <p className="text-xl text-white/80">
               If fraud is a problem, Reclaim Protocol is the solution. Globally.
@@ -449,9 +449,9 @@ export default function Home() {
                       className="learn-more-btn"
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (index === 0) window.location.href = '/status-match';
+                        if (index === 0) window.location.href = '/age-and-identity';
                         if (index === 1) window.location.href = '/education';
-                        if (index === 3) window.location.href = '/identity';
+                        if (index === 3) window.location.href = '/status-match';
                       }}
                     >
                       Learn more
@@ -749,7 +749,7 @@ export default function Home() {
                 <li><a href="/status-match">Status Match</a></li>
                 <li><a href="/education">Education</a></li>
                 <li><a href="#employment">Employment</a></li>
-                <li><a href="/identity">ID Verification</a></li>
+                <li><a href="/age-and-identity">ID Verification</a></li>
               </ul>
             </div>
 

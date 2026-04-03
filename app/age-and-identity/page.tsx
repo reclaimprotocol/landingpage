@@ -55,10 +55,10 @@ export default function Identity() {
             {/* Left side - Text and CTAs */}
             <div className="text-left">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Identity verified from Authoritative Government Portals
+                Age and ID verification that stores nothing.
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8">
-                Identity, Age, Citizenship every country. No ID uploads, no privacy law violations.
+                OFCOM-ready. GDPR by design. Verify age & ID from sources your users already have : their bank, their Govt portal login. No selfies. No documents. No PII on any server.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
@@ -69,9 +69,9 @@ export default function Identity() {
                 </button>
                 <button
                   className="btn-secondary"
-                  onClick={() => window.location.href = siteConfig.docsUrl}
+                  onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
                 >
-                  Open docs
+                  Try now
                 </button>
               </div>
             </div>
@@ -211,19 +211,135 @@ export default function Identity() {
             </div>
           </div>
 
-          <div className="mt-20 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Age verification: Prove you&apos;re an adult instead of proving you&apos;re &quot;not a child&quot;
-            </h2>
-            <p className="text-lg text-slate-600 mb-4 max-w-3xl mx-auto">
-              Most adults already have accounts on trusted sources — a bank, a telco, a health portal, a tax authority. Reclaim Protocol uses those to verify the user's age.
-            </p>
+        </div>
+      </section>
+
+      {/* How We Compare Section */}
+      <section className="comparison-section py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+            How we compare
+          </h2>
+          <div className="comparison-table-wrapper">
+            <table className="comparison-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th className="competitor">Yoti</th>
+                  <th className="competitor">Persona</th>
+                  <th className="reclaim">Reclaim Protocol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Method</td>
+                  <td className="competitor">Selfie age estimation</td>
+                  <td className="competitor">Document upload + selfie</td>
+                  <td className="reclaim">Login into govt portal, bank etc</td>
+                </tr>
+                <tr>
+                  <td>PII collected</td>
+                  <td className="competitor">
+                    <span className="badge badge-red">Facial biometrics</span>
+                  </td>
+                  <td className="competitor">
+                    <span className="badge badge-red">Govt ID + face</span>
+                  </td>
+                  <td className="reclaim">
+                    <span className="badge badge-green">None</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Data stored</td>
+                  <td className="competitor">Yes — processed on server</td>
+                  <td className="competitor">Yes — claims 3-day deletion</td>
+                  <td className="reclaim">Nothing. Ever.</td>
+                </tr>
+                <tr>
+                  <td>Deepfake-proof</td>
+                  <td className="competitor">
+                    <span className="badge badge-red">No</span>
+                    <span className="incident-detail">Selfie estimation can be spoofed with AI-generated faces</span>
+                  </td>
+                  <td className="competitor">
+                    <span className="badge badge-red">No</span>
+                    <span className="incident-detail">Documents and selfies can be forged with AI</span>
+                  </td>
+                  <td className="reclaim">
+                    <span className="badge badge-green">Yes</span>
+                    <span className="incident-detail">Proof is from an authenticated TLS session. Nothing to forge.</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Known incidents</td>
+                  <td className="competitor">
+                    <span className="badge badge-yellow">€950K fine</span>
+                    <span className="incident-detail">Spain&apos;s AEPD fined Yoti for biometric data handling, invalid consent, and excessive data retention</span>
+                  </td>
+                  <td className="competitor">
+                    <span className="badge badge-red">70K IDs exposed</span>
+                    <span className="incident-detail">~70,000 government-issued ID images exposed via customer service vendor. Discord publicly cut ties with Persona.</span>
+                  </td>
+                  <td className="reclaim">
+                    <span className="badge badge-green">None</span>
+                    <span className="incident-detail">No personal data is collected, processed, or stored. Nothing exists to breach.</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>If breached, what leaks?</td>
+                  <td className="competitor">User face scans</td>
+                  <td className="competitor">Government IDs, selfies</td>
+                  <td className="reclaim">Nothing. No data exists.</td>
+                </tr>
+                <tr>
+                  <td>Your liability if vendor is breached</td>
+                  <td className="competitor">
+                    <span className="badge badge-red">You&apos;re liable</span>
+                    <span className="incident-detail">You&apos;re the data controller. Biometric data is GDPR special category.</span>
+                  </td>
+                  <td className="competitor">
+                    <span className="badge badge-red">You&apos;re liable</span>
+                    <span className="incident-detail">You&apos;re the data controller. ID documents are personal data.</span>
+                  </td>
+                  <td className="reclaim">
+                    <span className="badge badge-green">No liability</span>
+                    <span className="incident-detail">No personal data was processed. No breach notification required.</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>GDPR burden</td>
+                  <td className="competitor">
+                    <span className="badge badge-red">High</span>
+                    <span className="incident-detail">Biometric data = special category. Requires explicit consent + DPIA.</span>
+                  </td>
+                  <td className="competitor">
+                    <span className="badge badge-red">High</span>
+                    <span className="incident-detail">ID document retention requires lawful basis + data minimization proof.</span>
+                  </td>
+                  <td className="reclaim">
+                    <span className="badge badge-green">Minimal</span>
+                    <span className="incident-detail">No personal data processed. Data minimization by design.</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Integration time</td>
+                  <td className="competitor">Days to weeks</td>
+                  <td className="competitor">Days to weeks</td>
+                  <td className="reclaim">Hours</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+          <p className="text-center text-lg text-slate-600 mt-8">
+            <a href="https://blog.reclaimprotocol.org/posts/ofcom-highly-effective-how-to-comply" target="_blank" rel="noopener noreferrer" className="text-[#0000ee] underline hover:text-[#0000cc]">
+              Read our blog on how to comply with OFCOM and GDPR in tandem
+            </a>
+          </p>
         </div>
       </section>
 
       {/* Try It Out Section */}
-      <section className="verify-seconds-section py-20 px-6">
+      <section id="demo" className="verify-seconds-section py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
             Try it out yourself

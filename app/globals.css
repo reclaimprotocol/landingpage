@@ -1172,6 +1172,117 @@ body {
   line-height: 1.6;
 }
 
+/* How We Compare Section */
+.comparison-section {
+  background: #f8fafc;
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+}
+
+.comparison-table thead th {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.comparison-table thead th:first-child {
+  text-align: left;
+}
+
+.comparison-table thead th.competitor {
+  color: #64748b;
+}
+
+.comparison-table thead th.reclaim {
+  color: #0000ee;
+  background: rgba(0, 0, 238, 0.04);
+  border-radius: 12px 12px 0 0;
+}
+
+.comparison-table tbody td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+  text-align: center;
+}
+
+.comparison-table tbody td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+}
+
+.comparison-table tbody td.competitor {
+  color: #475569;
+}
+
+.comparison-table tbody td.reclaim {
+  background: rgba(0, 0, 238, 0.04);
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.comparison-table tbody tr:last-child td.reclaim {
+  border-radius: 0 0 12px 12px;
+}
+
+.comparison-table .badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.comparison-table .badge-red {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.comparison-table .badge-yellow {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.comparison-table .badge-green {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.comparison-table .incident-detail {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.4rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .comparison-table {
+    font-size: 0.85rem;
+    min-width: 700px;
+  }
+
+  .comparison-table thead th,
+  .comparison-table tbody td {
+    padding: 0.75rem 0.75rem;
+  }
+}
+
 /* Education Hero Section */
 .education-hero {
   background: #0000ee;
