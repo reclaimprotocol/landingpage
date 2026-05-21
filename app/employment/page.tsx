@@ -1,5 +1,16 @@
 'use client';
 
+const SOURCES = [
+  { name: 'ADP', src: '/logo-adp.png' },
+  { name: 'Workday', src: '/logo-workday.png' },
+  { name: 'Paychex', src: '/logo-paychex.png' },
+  { name: 'Gusto', src: '/logo-gusto.png' },
+  { name: 'IRS', src: '/logo-irs.png' },
+  { name: 'HMRC', src: '/logo-hmrc.png' },
+  { name: 'Uber', src: '/logo-uber.png' },
+  { name: 'DoorDash', src: '/logo-doordash.png' },
+];
+
 function Nav() {
   return (
     <header className="nav">
@@ -31,7 +42,7 @@ function Breadcrumb() {
           <span>›</span>
           <a href="/#verify">Solutions</a>
           <span>›</span>
-          <span className="breadcrumb-current">Loyalty &amp; status match</span>
+          <span className="breadcrumb-current">Employment &amp; income</span>
         </div>
       </div>
     </div>
@@ -43,35 +54,38 @@ function Hero() {
     <section className="vert-hero">
       <div className="wrap vert-hero-inner">
         <div>
-          <div className="eyebrow"><span className="dot"></span>STATUS MATCH</div>
+          <div className="eyebrow"><span className="dot"></span>EMPLOYMENT &amp; INCOME VERIFICATION</div>
           <h1 style={{ marginTop: '20px' }}>
-            Status match.<br />
-            <strong>Cryptographically verified.</strong>
+            Income &amp; employment.<br />
+            <strong>Without the phishing.</strong>
           </h1>
           <p className="lead" style={{ marginTop: '20px' }}>
-            Screenshots were state-of-the-art in 2006. In 2026, a free chat model renders a flawless Platinum status page in 30 seconds.{' '}
-            <b style={{ color: 'var(--ink)' }}>The only way to be sure is to verify directly with the airline.</b>
+            Verify employer, gross income, work history, and tenure — directly from payroll systems, tax authorities, and gig platforms.{' '}
+            <b style={{ color: 'var(--ink)' }}>Anywhere in the world. Cryptographically secure.</b>
           </p>
           <div className="hero-actions">
             <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Talk to founder →</a>
             <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Integrate now →</a>
           </div>
           <div className="hero-meta">
-            <span><b>100+</b> programs</span>
+            <span><b>10K+</b> employers</span>
+            <span><b>90+</b> countries</span>
             <span><b>30s</b> to verify</span>
-            <span><b>0%</b> screenshot fraud</span>
             <span><b>0%</b> data leakage</span>
           </div>
         </div>
         <div className="vert-hero-aside">
-          <div className="award-card">
-            <div className="award-card-img">
-              <img src="/loyalty-awards.png" alt="Loyalty Awards" loading="lazy" />
+          <div className="src-grid-wrap">
+            <div className="src-grid-head mono">Verified directly from</div>
+            <div className="src-grid">
+              {SOURCES.map((s) => (
+                <div className="src-cell" key={s.name} title={s.name}>
+                  <img src={s.src} alt={s.name} loading="lazy" />
+                </div>
+              ))}
             </div>
-            <div className="award-card-meta">
-              <div className="award-card-eyebrow mono">★ Winner · 2025</div>
-              <div className="award-card-title">Startup of the Year</div>
-              <div className="award-card-sub">Loyalty Awards · Amsterdam</div>
+            <div className="src-grid-foot">
+              <span>Payroll · Tax · Gig &middot; HR — <b>10,000+ sources</b></span>
             </div>
           </div>
         </div>
@@ -82,10 +96,24 @@ function Hero() {
 
 function UseCases() {
   const cases = [
-    { tag: '01', title: 'Airline status match', body: "Match a Diamond, Platinum, or Star Alliance Gold elsewhere — straight from the user's airline session. No screenshots, no boarding-pass photos." },
-    { tag: '02', title: 'Hotel loyalty match', body: 'Cross-match Marriott Titanium, Hilton Diamond, Hyatt Globalist into your hotel&apos;s top tier. The proof comes from the source program.' },
-    { tag: '03', title: 'Credit-card lounge access', body: 'Verify a premium-card tier (Amex Platinum, Centurion, Visa Infinite) for lounge / partner access — without holding card data.' },
-    { tag: '04', title: 'Cruise & rental tier', body: 'Match status across cruises, rental cars, and rideshare — for any program with a customer login.' },
+    {
+      tag: '01 · MORTGAGE',
+      title: 'Mortgage origination',
+      body: "The borrower logs in on the payroll system itself — never on a third-party flow asking for credentials. You receive a cryptographic proof that any auditor can independently re-verify, even after the verifier is gone.",
+      foot: 'Tamper-evident proof. Zero credential capture.',
+    },
+    {
+      tag: '02 · LENDING',
+      title: 'Personal lending & BNPL',
+      body: "Income proofs that belong to you alone — not data quietly resold across credit, insurance, marketing, and ad networks. Lower regulator risk, lower data-broker exposure, higher borrower trust.",
+      foot: 'Zero data resale. Zero retention by us.',
+    },
+    {
+      tag: '03 · BACKGROUND',
+      title: 'Pre-employment checks',
+      body: "Verify a single fact — employer, title, dates — anywhere a candidate can log into their HR system. We don't scrape 170 HR fields, store them, or resell them. Only the one fact you asked for is returned.",
+      foot: 'Global by default. One field, not 170.',
+    },
   ];
   return (
     <section className="section-pad" id="use-cases" style={{ background: 'var(--bg-2)' }}>
@@ -93,19 +121,19 @@ function UseCases() {
         <div className="section-head">
           <div>
             <div className="eyebrow"><span className="dot"></span>Use cases</div>
-            <h2 style={{ marginTop: '12px' }}>Anywhere tier matters.<br />Anywhere a screenshot fails.</h2>
+            <h2 style={{ marginTop: '12px' }}>Yesterday&apos;s service providers.<br />Tomorrow&apos;s liability.</h2>
           </div>
           <p className="right">
-            Loyalty has become a $300B asset and the #1 acquisition lever in travel.
-            AI-generated proofs are eating into every program. We close the gap at the source.
+            We don&apos;t replace your fraud team. We replace the brittle document-and-database layer and phishing service providers.
           </p>
         </div>
-        <div className="sm-usecase-grid">
+        <div className="usecase-grid">
           {cases.map((c) => (
-            <div className="sm-usecase-card" key={c.tag}>
-              <div className="sm-usecase-tag mono">{c.tag}</div>
-              <h3 className="sm-usecase-h">{c.title}</h3>
-              <p className="sm-usecase-body">{c.body}</p>
+            <div className="usecase-card" key={c.tag}>
+              <div className="usecase-tag mono">{c.tag}</div>
+              <h3 className="usecase-h">{c.title}</h3>
+              <p className="usecase-body">{c.body}</p>
+              <div className="usecase-foot">{c.foot}</div>
             </div>
           ))}
         </div>
@@ -114,70 +142,36 @@ function UseCases() {
   );
 }
 
-function SnakeOil() {
+function Takedown() {
+  const pts = [
+    { tag: 'Phishing', head: "We never ask users to type their payroll login into our app.", body: "Aggregators capture the user's payroll credentials and scrape 170+ HR fields in the process. Reclaim runs the login on the source itself. The math makes it impossible for us to see the password." },
+    { tag: 'Stale databases', head: 'Live data from the source. Not a 30-day-old DB record.', body: "The 1970s-era employment database refreshes whenever the payroll partner pushes a snapshot. Reclaim pulls today's pay stub today, straight from the source." },
+    { tag: 'Tamper risk', head: "Cryptographic proofs. Even we can't edit them.", body: "A central database is a single point of compromise — one breach, one insider, one subpoena and the whole archive moves. A Reclaim proof is bound to a TLS session with the source's real certificate. Unforgeable. By anyone." },
+    { tag: 'Legal grey areas', head: 'Zero data retention. Zero compliance surface.', body: "Aggregators hold the user's data for 30+ days after the contract ends. Reclaim stores nothing — the proof goes from the user's device straight to your callback URL. There's no archive to subpoena, breach, or audit." },
+    { tag: 'Geography', head: 'Global by default. Not US-only.', body: "Both incumbents are bound by US payroll partnerships. Reclaim works wherever a worker can log into their payroll, tax, or gig platform — Brazil, Indonesia, India, the EU, anywhere." },
+    { tag: 'Integration', head: 'API key in 10 lines. No sales call required.', body: "Standard procurement timeline for incumbents: six weeks of sales calls before you can run a single verification. Standard Reclaim timeline: 10 lines of code, in test mode this afternoon." },
+  ];
   return (
-    <section className="section-pad" id="snake-oil">
+    <section className="section-pad">
       <div className="wrap">
-        <div className="snake-grid">
-          <div className="snake-copy">
-            <div className="eyebrow"><span className="dot"></span>vs. screenshot-based verification</div>
-            <h2 style={{ marginTop: '12px' }}>
-              &ldquo;Our secret ingredient<br />catches the fakes.&rdquo;
-            </h2>
-            <p className="snake-rebuttal mono">No, it doesn&apos;t.</p>
-            <p className="snake-body">
-              Heuristic detection — OCR, font matching, EXIF analysis, image forensics — was workable when fakes were built in Photoshop. In 2026, a twelve-year-old with ChatGPT generates a flawless Platinum status page <b>in 30 seconds</b>, with the right typography, correct color profile, and synthetic EXIF. Every &ldquo;proprietary detection engine&rdquo; is just a faster version of the same OCR + LLM toolkit the fraudster used.
-            </p>
-            <p className="snake-body">
-              You can&apos;t out-AI an AI fake. Detection is an arms race the defender is already losing.
-            </p>
-            <p className="snake-kicker">
-              <b>If they won&apos;t tell you how it works, it&apos;s because it doesn&apos;t.</b>{' '}
-              Reclaim&apos;s cryptography is published, audited, open-source. No magic ingredient. Just math.
-            </p>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow"><span className="dot"></span>vs. the old guard</div>
+            <h2 style={{ marginTop: '12px' }}>Income verification was<br />stuck in 1995. Until now.</h2>
           </div>
-          <div className="snake-visual">
-            <div className="vs-card vs-card--them">
-              <div className="vs-card-tag mono">SCREENSHOT-BASED</div>
-              <div className="vs-card-h">Detect after the fact.</div>
-              <ul className="vs-list">
-                <li>● OCR + image forensics</li>
-                <li>● Font / EXIF heuristics</li>
-                <li>● &ldquo;Proprietary&rdquo; detection score</li>
-                <li className="vs-list-bad">✕ Every fake improvement breaks it</li>
-              </ul>
-              <div className="vs-card-foot mono">— same tools that made the fake</div>
-            </div>
-            <div className="vs-card-arrow">↓</div>
-            <div className="vs-card vs-card--us">
-              <div className="vs-card-tag mono">RECLAIM</div>
-              <div className="vs-card-h">Verify at the source.</div>
-              <ul className="vs-list">
-                <li>● No screenshot in the loop</li>
-                <li>● Proof bound to the airline&apos;s TLS session</li>
-                <li>● Even we can&apos;t fake it</li>
-                <li className="vs-list-good">✓ Mathematically impossible to forge</li>
-              </ul>
-              <div className="vs-card-foot mono">— prevention, not detection</div>
-            </div>
-          </div>
+          <p className="right">
+            The incumbent is a 50-year-old credit-bureau database. The other phishes payroll credentials.
+          </p>
         </div>
-        <a className="snake-video" href="https://www.youtube.com/watch?v=NLYJjBBnoWA" target="_blank" rel="noopener noreferrer">
-          <div className="snake-video-thumb">
-            <img className="snake-video-img" src="https://img.youtube.com/vi/NLYJjBBnoWA/hqdefault.jpg" alt="" loading="lazy" />
-            <div className="snake-video-play">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <polygon points="7,4 18,11 7,18" fill="#fff" />
-              </svg>
+        <div className="takedown">
+          {pts.map((p) => (
+            <div className="takedown-card" key={p.tag}>
+              <div className="takedown-tag mono">{p.tag}</div>
+              <h3 className="takedown-h">{p.head}</h3>
+              <p className="takedown-body">{p.body}</p>
             </div>
-          </div>
-          <div className="snake-video-meta">
-            <div className="snake-video-eyebrow mono">▶ WATCH</div>
-            <div className="snake-video-title">We faked a status screenshot in 30 seconds.</div>
-            <div className="snake-video-sub">No Photoshop. No premium AI tool. Just ChatGPT and a prompt. With Reclaim Protocol, there is no possibility to use AI, because AI cannot fake cryptography.</div>
-          </div>
-          <div className="snake-video-cta mono">YouTube ↗</div>
-        </a>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -193,7 +187,7 @@ function TrustBar() {
             <h2 style={{ marginTop: '12px' }}>Compliant by design.<br />Secured by cryptography.</h2>
           </div>
           <p className="right">
-            SOC 2 Type II · ISO 27001 · GDPR ready. Audited by Zellic and ZKSecurity. Open source on GitHub.
+            SOC 2 Type II · ISO 27001 · GDPR ready. Audited by Zellic and ZKSecurity. Open source on GitHub. Your security team can verify the claim.
           </p>
         </div>
         <div className="trust-bar">
@@ -249,8 +243,8 @@ function FinalCTA() {
             <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>
               <span className="dot" style={{ background: '#fff' }}></span>READY WHEN YOU ARE
             </div>
-            <h2 style={{ marginTop: '14px' }}>Stop matching fakes.<br />Pilot in a week.</h2>
-            <p>Plug in a test API key. Throw your toughest status-match cases at it. If we can&apos;t catch the fake, you don&apos;t pay.</p>
+            <h2 style={{ marginTop: '14px' }}>Run it on your worst income fraud.<br />This week.</h2>
+            <p>Plug in a test API key in 10 lines of code. Throw your underwriting team&apos;s hardest examples at it. If we can&apos;t catch it, you don&apos;t pay.</p>
             <div className="cta-fineprint mono">
               <span>● No sales call to start</span>
               <span>● Free test mode</span>
@@ -331,14 +325,14 @@ function Footer() {
   );
 }
 
-export default function StatusMatchPage() {
+export default function EmploymentPage() {
   return (
     <>
       <Nav />
       <Breadcrumb />
       <Hero />
       <UseCases />
-      <SnakeOil />
+      <Takedown />
       <TrustBar />
       <FinalCTA />
       <Footer />
