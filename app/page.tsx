@@ -651,8 +651,8 @@ function Integration() {
             <div className="check-row">Open-source code with permissive licenses.</div>
           </div>
           <div className="row" style={{ marginTop: '28px' }}>
-            <a href="https://dev.reclaimprotocol.org" className="btn btn-primary">Get an API key →</a>
-            <a href="https://docs.reclaimprotocol.org" className="btn btn-ghost">Read the docs</a>
+            <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Integrate now →</a>
+            <a href="https://drive.google.com/file/d/1Tok4J6mv7PwRCbwxVNhv4alS82sQJI4E/view" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Read Whitepaper</a>
           </div>
         </div>
         <div className="code-block">
