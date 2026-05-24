@@ -22,6 +22,7 @@ function Nav() {
         <nav className="nav-links">
           <a href="/#verify">Solutions</a>
           <a href="https://trust.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Trust Center</a>
+          <a href="https://drive.google.com/file/d/1Tok4J6mv7PwRCbwxVNhv4alS82sQJI4E/view" target="_blank" rel="noopener noreferrer">Whitepaper</a>
           <a href="https://blog.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Blog</a>
         </nav>
         <div className="nav-cta">
