@@ -767,6 +767,24 @@ footer { border-top: 1px solid var(--line); padding: 64px 0 28px; }
   .wrap { padding: 0 20px; }
   .section-pad { padding: 64px 0; }
   .hero { padding: 64px 0 48px; }
+  .compliance-hero { gap: 36px; overflow: hidden; }
+  .aphone-wrap {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+  }
+  .aphone { width: min(260px, 100%); }
+  .aphone-callout {
+    position: static;
+    width: min(100%, 260px);
+    box-shadow: 0 10px 24px -14px rgba(0,0,0,0.18);
+  }
+  .aphone-callout-line { display: none; }
   .sm-usecase-grid { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
   .numbers-grid { grid-template-columns: 1fr; }
