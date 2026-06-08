@@ -43,14 +43,15 @@ function Hero() {
   return (
     <section className="hero no-border" style={{ borderTop: 0 }}>
       <div className="wrap hero-wrap">
-        <div className="eyebrow"><span className="dot"></span>EDUCATION | EMPLOYMENT | AIRLINE STATUS | AND MORE</div>
+        <div className="hero-kicker">
+          <div className="eyebrow"><span className="dot"></span>EDUCATION | EMPLOYMENT | AIRLINE STATUS | AND MORE</div>
+          <span className="yc-badge"><span className="yc-badge-mark">Y</span>Backed by YC</span>
+        </div>
         <h1 style={{ marginTop: '20px' }}>
-          The Consumer Verification<br />
-          <strong>That will not haunt you.</strong>
+          <strong>Education, Employment &amp; Loyalty</strong> verifications that won&apos;t get you sued.
         </h1>
         <p className="lead" style={{ marginTop: '20px' }}>
-          No phishing. No stale databases. Just <b style={{ color: 'var(--ink)' }}>clean
-          consumer data, straight from the source</b>. Compliant by design. Secured by cryptography.
+          Global. Compliant. 45%+ conversion rates. Fully private &amp; secure.
         </p>
         <div className="hero-actions">
           <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Talk to founder →</a>
