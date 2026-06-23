@@ -608,6 +608,11 @@ footer { border-top: 1px solid var(--line); padding: 64px 0 28px; }
   padding-top: 32px; margin-top: 48px; border-top: 1px solid var(--line);
   font-size: 12px; color: var(--mute); flex-wrap: wrap; gap: 16px;
 }
+.foot-legal {
+  display: grid; gap: 6px;
+}
+.foot-legal a { color: var(--mute); }
+.foot-legal a:hover { color: var(--blue); }
 .foot-bottom-meta {
   display: flex; align-items: center; gap: 20px;
   font-family: var(--font-ibm-plex-mono), "IBM Plex Mono", monospace;

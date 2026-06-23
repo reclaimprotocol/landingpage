@@ -724,7 +724,9 @@ export default function Identity() {
             </div>
           </div>
           <div className="footer-bottom text-center text-white/70 text-sm pt-8 border-t border-white/10">
-            © 2025 Reclaim Protocol · <a href={siteConfig.privacyPolicyUrl} target="_blank" rel="noopener noreferrer">Privacy Policy</a> · <a href={siteConfig.termsUrl} target="_blank" rel="noopener noreferrer">Terms</a>
+            <div>© 2026 <a href="https://creatoros.co" target="_blank" rel="noopener noreferrer">CreatorOS Inc.</a> All rights reserved.</div>
+            <div>Reclaim Protocol is a product operated by <a href="https://creatoros.co" target="_blank" rel="noopener noreferrer">CreatorOS Inc.</a></div>
+            <div><a href={siteConfig.privacyPolicyUrl} target="_blank" rel="noopener noreferrer">Privacy Policy</a> · <a href={siteConfig.termsUrl} target="_blank" rel="noopener noreferrer">Terms</a></div>
           </div>
         </footer>
       </section>
