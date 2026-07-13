@@ -716,7 +716,7 @@ export default function Identity() {
             <div>
               <h4 className="text-white font-bold text-lg mb-4">Community</h4>
               <ul className="footer-links">
-                <li><a href="https://www.linkedin.com/company/reclaimprotocol" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="https://www.linkedin.com/company/reclaimprotocol/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                 <li><a href="https://x.com/reclaimprotocol" target="_blank" rel="noopener noreferrer">Twitter</a></li>
                 <li><a href="https://t.me/protocolreclaim" target="_blank" rel="noopener noreferrer">Telegram</a></li>
                 <li><a href="mailto:support@reclaimprotocol.org">Support</a></li>

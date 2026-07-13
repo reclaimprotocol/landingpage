@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'Reclaim Protocol',
     images: [
       {
-        url: '/images/status-match-og.jpg',
+        url: '/meta-image-statusmatch.png',
         width: 1200,
         height: 630,
         alt: 'Status Match Verification Is Broken — Reclaim Protocol',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Status Match Verification Is Broken. Here\'s the 30-Second Proof.',
     description: 'We faked an airline elite status match with Chrome\'s inspect-element tool. Video, public record, and the cryptographic alternative.',
-    images: ['/images/status-match-og.jpg'],
+    images: ['/meta-image-statusmatch.png'],
     creator: '@reclaimprotocol',
   },
   robots: {

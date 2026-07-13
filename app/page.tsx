@@ -1,25 +1,25 @@
-'use client';
-
-import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import CopyDocsLinkButton from './copy-docs-link-button';
 
 /* ---------- Nav ---------- */
 function Nav() {
   return (
     <header className="nav">
       <div className="wrap nav-inner">
-        <a href="/" className="brand">
+        <Link href="/" className="brand">
           <img className="brand-mark" src="/reclaim-logo.png" alt="Reclaim Protocol" />
           <span>Reclaim Protocol</span>
-        </a>
+        </Link>
         <nav className="nav-links">
           <a href="#verify">Solutions</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#results">Results</a>
           <a href="https://trust.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Trust Center</a>
-          <a href="https://drive.google.com/file/d/1Tok4J6mv7PwRCbwxVNhv4alS82sQJI4E/view" target="_blank" rel="noopener noreferrer">Whitepaper</a>
           <a href="https://blog.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Blog</a>
+          <a href="https://drive.google.com/file/d/1Tok4J6mv7PwRCbwxVNhv4alS82sQJI4E/view" target="_blank" rel="noopener noreferrer">Whitepaper</a>
         </nav>
         <div className="nav-cta">
-          <a href="https://docs.reclaimprotocol.org" className="btn btn-sm btn-ghost">Docs</a>
-          <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-primary">Talk to founder →</a>
+          <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-primary">Start free →</a>
         </div>
       </div>
     </header>
@@ -30,10 +30,10 @@ function Nav() {
 function Banner() {
   return (
     <div className="banner">
-      <span className="pill">New</span>
-      <span><b>3,000,000+</b> verifications processed · <b>0</b> fraud</span>
+      <span className="pill">Pricing</span>
+      <span><b>25 free</b> verifications every month · <b>$0.10</b> at Enterprise scale</span>
       <span style={{ opacity: 0.6 }}>·</span>
-      <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Integrate now with 10 lines of code →</a>
+      <a href="#pricing" style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '3px' }}>See pricing →</a>
     </div>
   );
 }
@@ -44,27 +44,102 @@ function Hero() {
     <section className="hero no-border" style={{ borderTop: 0 }}>
       <div className="wrap hero-wrap">
         <div className="hero-kicker">
-          <div className="eyebrow"><span className="dot"></span>EDUCATION | EMPLOYMENT | AIRLINE STATUS | AND MORE</div>
+          <div className="eyebrow"><span className="dot"></span>Global coverage | $0.1 at scale | 45%+ conversion rates</div>
           <span className="yc-badge"><span className="yc-badge-mark">Y</span>Backed by YC</span>
         </div>
         <h1 style={{ marginTop: '20px' }}>
-          <strong>Education, Employment &amp; Loyalty</strong> verifications that won&apos;t get you sued.
+          <strong>Education, Employment and Loyalty</strong> verifications under $1.
         </h1>
         <p className="lead" style={{ marginTop: '20px' }}>
-          Global. Compliant. 45%+ conversion rates. Fully private &amp; secure.
+          Advances in AI and cryptography help slash prices by up to 99.9%. You are probably being overcharged right now.
         </p>
         <div className="hero-actions">
-          <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Talk to founder →</a>
-          <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Integrate now →</a>
+          <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Start free →</a>
+          <a href="#pricing" className="btn btn-ghost">See pricing →</a>
         </div>
         <div className="hero-meta">
-          <span><b>3M+</b> verifications</span>
-          <span><b>0</b> fraud</span>
-          <span><b>0</b> data leakage</span>
-          <span><b>29k+</b> universities</span>
-          <span><b>10k+</b> employers</span>
-          <span><b>100+</b> airlines &amp; hotels</span>
+          <span><b>29K+</b> universities</span>
+          <span><b>100+</b> loyalty programs</span>
+          <span><b>2–30s</b> proof generation</span>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Pricing ---------- */
+function Pricing() {
+  const plans = [
+    {
+      name: 'Hacker',
+      price: 'Free',
+      cadence: 'No credit card needed',
+      bestFor: 'Best for trying out',
+      details: ['25 included verifications per month', 'Up to 100 zkFetches', 'Use AI tools for integration'],
+      cta: 'Start free →',
+      href: 'https://docs.reclaimprotocol.org',
+    },
+    {
+      name: 'Solopreneur',
+      price: '$2,000/m',
+      cadence: '2,000 included verifications',
+      bestFor: 'Best for pilots and PoCs',
+      details: ['$1.00 effective rate at full included usage', '20,000 zkFetches included', 'Email support'],
+      cta: 'Integrate now →',
+      href: 'https://docs.reclaimprotocol.org',
+    },
+    {
+      name: 'Startup',
+      price: '$5,000/m',
+      cadence: '10,000 verifications / month',
+      bestFor: 'Best for projects getting traction',
+      details: ['$0.50 effective rate at full included usage', '100,000 zkFetches included', 'Dedicated shared Slack channel'],
+      cta: 'Integrate now →',
+      href: 'https://docs.reclaimprotocol.org',
+      featured: true,
+    },
+    {
+      name: 'Enterprise',
+      price: '$10,000/m',
+      cadence: '100,000 verifications per month',
+      bestFor: 'Best for full scale products',
+      details: ['$0.10 effective rate at full included usage', '1M zkFetches included', '24-hour SLA, 7 days a week', 'Other custom requests'],
+      cta: 'Speak to founder →',
+      href: 'https://calendly.com/madhavanmalolan/call',
+    },
+  ];
+
+  return (
+    <section className="section-pad pricing-section" id="pricing">
+      <div className="wrap">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow"><span className="dot"></span>Simple transparent pricing</div>
+            <h2 style={{ marginTop: '12px' }}>The price is the point.</h2>
+          </div>
+          <p className="right">
+            No need to jump through sales calls just to get a price. You can get started without even talking to us.
+          </p>
+        </div>
+        <div className="pricing-grid">
+          {plans.map((plan) => (
+            <article className={`price-card${plan.featured ? ' price-card--featured' : ''}`} key={plan.name}>
+              {plan.featured && <div className="price-badge mono">RECOMMENDED</div>}
+              <div className="price-name mono">{plan.name}</div>
+              <div className="price-amount">{plan.price}</div>
+              <div className="price-cadence">{plan.cadence}</div>
+              {plan.bestFor && <div className="price-included">{plan.bestFor}</div>}
+              <ul className="price-details">
+                {plan.details.map((detail) => <li key={detail}>{detail}</li>)}
+              </ul>
+              <a className={`btn ${plan.featured ? 'btn-primary' : 'btn-ghost'}`} href={plan.href} target="_blank" rel="noopener noreferrer">{plan.cta}</a>
+            </article>
+          ))}
+        </div>
+        <p className="pricing-footnote">
+          * 99.9% savings as compared to{' '}
+          <a href="https://legalclarity.org/usps-employment-verification-process-for-verifiers/" target="_blank" rel="noopener noreferrer">incumbents listed here ↗</a>
+        </p>
       </div>
     </section>
   );
@@ -75,9 +150,9 @@ function Verticals() {
   const items = [
     {
       title: 'Employment & income',
-      tag: '10K+ EMPLOYERS',
+      tag: '90+ COUNTRIES · FROM $0.10',
       href: '/employment',
-      body: "Verify employer and gross income from today's payroll. Most solutions rely on stale databases or phishing websites. Huge liability.",
+      body: "Verify current employer, title, and gross income across 90+ countries. One global flow instead of a US-focused verification stack.",
       proof: {
         kind: 'logos' as const,
         sources: [
@@ -95,9 +170,9 @@ function Verticals() {
     },
     {
       title: 'Education enrollment',
-      tag: '29K+ SCHOOLS',
+      tag: '190+ COUNTRIES · FROM $0.10',
       href: '/education',
-      body: "Pull live enrollment directly from universities. Not guessing using a .edu email, not using a transcript upload that's trivial to fake these days.",
+      body: "Verify students at 29,000+ institutions worldwide. Expand beyond national clearinghouses whose listed self-service prices run $4.95 or $19.95 per result.",
       proof: {
         kind: 'logos' as const,
         sources: [
@@ -115,9 +190,9 @@ function Verticals() {
     },
     {
       title: 'Loyalty & status match',
-      tag: '100+ AIRLINES & HOTELS',
+      tag: '100+ Programs · Hotels & Airlines',
       href: '/status-match',
-      body: 'Instant tier verification across 100+ airlines and hotels. No screenshots, no email back-and-forth. This industry is ridden with AI generated fraud.',
+      body: 'Own the verification layer for airline, hotel, cruise, rental, and card status. Keep control of the product and the unit economics.',
       proof: {
         kind: 'photo' as const,
         src: '/loyalty-awards.png',
@@ -132,8 +207,8 @@ function Verticals() {
       <div className="wrap">
         <div className="section-head">
           <div>
-            <div className="eyebrow"><span className="dot"></span>What you can verify</div>
-            <h2 style={{ marginTop: '12px' }}>Any verification.<br />Global coverage.</h2>
+            <div className="eyebrow"><span className="dot"></span>New technology, new pricing</div>
+            <h2 style={{ marginTop: '12px' }}>Cut the legacy tax.<br />Keep the margin.</h2>
           </div>
         </div>
         <div className="cards">
@@ -172,14 +247,14 @@ function Verticals() {
               )}
               {it.href && (
                 <a className="card-link" href={it.href}>
-                  Read more <span aria-hidden="true">→</span>
+                  Learn more <span aria-hidden="true">→</span>
                 </a>
               )}
             </div>
           ))}
         </div>
         <div className="ask-strip">
-          <span>Need to verify something else?</span>
+          <span>Need another source or verification type?</span>
           <a href="mailto:madhavan@reclaimprotocol.org?subject=Verification%20request" className="ask-link">Ask us →</a>
         </div>
       </div>
@@ -194,20 +269,18 @@ function HowItWorks() {
       <div className="wrap">
         <div className="section-head">
           <div>
-            <div className="eyebrow"><span className="dot"></span>How it works</div>
-            <h2 style={{ marginTop: '12px' }}>3 steps.<br />Fully secured by cryptography.</h2>
+            <div className="eyebrow"><span className="dot"></span>How the cost comes out</div>
+            <h2 style={{ marginTop: '12px' }}>Live source.<br />Software proof. Lower bill.</h2>
           </div>
           <p className="right">
-            The protocol uses zero-knowledge cryptography to fetch a single, verified fact
-            straight from the issuing source — never seeing the user&apos;s credentials, never
-            storing their data.
+            AI helps us add and maintain source connectors. Cryptography verifies the returned fact in software. The standard flow avoids the database licensing and manual operations that make legacy verification expensive.
           </p>
         </div>
         <div className="steps">
           <div className="step">
             <div className="step-num mono">STEP 01</div>
-            <h3>User logs in to the source</h3>
-            <p>Your user signs into their university, employer, airline, or bank as they always do. Not an unfamiliar phishing site. Familiarity builds trust.</p>
+            <h3>Connect to the live source</h3>
+            <p>Your users log in to the actual portal—not a phishing widget.</p>
             <div className="step-shot">
               <div className="phone">
                 <div className="phone-screen">
@@ -218,8 +291,8 @@ function HowItWorks() {
           </div>
           <div className="step">
             <div className="step-num mono">STEP 02</div>
-            <h3>Only the needed fact is extracted</h3>
-            <p>Name, enrollment status, tier, age. Only the field you asked for. Everything else stays on-device. No PII leaks. Consistent with GDPR data minimization laws.</p>
+            <h3>Extract only the answer</h3>
+            <p>AI creates a connector that identifies what to verify, without requiring manual development work beforehand.</p>
             <div className="step-shot">
               <div className="phone">
                 <div className="phone-screen">
@@ -230,8 +303,8 @@ function HowItWorks() {
           </div>
           <div className="step">
             <div className="step-num mono">STEP 03</div>
-            <h3>A cryptographic proof is generated</h3>
-            <p>A zero-knowledge proof is generated on device. Akin to a digital notary. Unforgeable. You receive the proof on user consent. You can verify yourself.</p>
+            <h3>Verify it automatically</h3>
+            <p>Verification happens on the client side, making it secure, privacy-preserving, and cost-effective.</p>
             <div className="step-shot">
               <div className="phone">
                 <div className="phone-screen">
@@ -246,64 +319,38 @@ function HowItWorks() {
   );
 }
 
-/* ---------- Compliance ---------- */
-function Compliance() {
+/* ---------- Economics and trust ---------- */
+function EconomicsAndTrust() {
   return (
-    <section className="section-pad" id="compliance" style={{ background: 'var(--bg-2)' }}>
+    <section className="section-pad" id="economics" style={{ background: 'var(--bg-2)' }}>
       <div className="wrap">
-        <div className="compliance-hero">
-          <div className="compliance-copy">
-            <div className="eyebrow"><span className="dot"></span>Compliance &amp; security</div>
-            <h2 style={{ marginTop: '12px' }}>
-              Reclaim never asks users to log in<br />on a third-party portal.
-            </h2>
-            <p className="lead" style={{ marginTop: '18px' }}>
-              Tricking users into handing over a username and password to your verification
-              vendor isn&apos;t a UX shortcut — it&apos;s a credential-phishing pattern. The
-              regulator agrees. Your users do too.
-            </p>
-            <p style={{ marginTop: '14px', color: 'var(--mute)', fontSize: '14.5px' }}>
-              With Reclaim, the user logs in on the real source (the employer, the university, the airline).
-              We never see the password. All the verification happens on the browser, not our backend.
-            </p>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow"><span className="dot"></span>Why Reclaim costs less</div>
+            <h2 style={{ marginTop: '12px' }}>The mechanism changed.<br />The price should too.</h2>
           </div>
-          <div className="aphone-wrap">
-            <div className="aphone">
-              <div className="aphone-status mono">
-                <span className="aphone-lock">
-                  <svg width="9" height="11" viewBox="0 0 9 11" fill="none">
-                    <rect x="0.5" y="4.5" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="1" />
-                    <path d="M2.5 4.5V3a2 2 0 014 0v1.5" stroke="currentColor" strokeWidth="1" />
-                  </svg>
-                </span>
-                <span>thirdparty-portal.com</span>
-              </div>
-              <div className="aphone-body">
-                <div className="aphone-logo"><span>A</span></div>
-                <div className="aphone-title">Sign in to Acme Corp</div>
-                <div className="aphone-sub">Connect your employer to continue verification.</div>
-                <div className="aphone-field">
-                  <label>Username</label>
-                  <div className="aphone-input">jordan.reyes</div>
-                </div>
-                <div className="aphone-field">
-                  <label>Password</label>
-                  <div className="aphone-input"><span className="aphone-dots">••••••••••••</span></div>
-                </div>
-                <div className="aphone-btn">Sign in</div>
-                <div className="aphone-disclaimer">&ldquo;We won&apos;t store your password. Pinky promise!&rdquo;</div>
-              </div>
-            </div>
-            <div className="aphone-callout">
-              <div className="aphone-callout-tag mono">↘ small print</div>
-              <div className="aphone-callout-quote">&ldquo;We won&apos;t store your password. Pinky promise!&rdquo;</div>
-              <div className="aphone-callout-foot mono">— literally every credential-aggregator</div>
-            </div>
-            <svg className="aphone-callout-line" viewBox="0 0 160 280" fill="none">
-              <path d="M8 8 C 30 80, 80 180, 148 268" stroke="var(--blue)" strokeWidth="1.4" strokeDasharray="3 3" />
-              <circle cx="148" cy="268" r="3" fill="var(--blue)" />
-            </svg>
-          </div>
+          <p className="right">Old verification economics were built around proprietary databases, country-by-country coverage, and manual exceptions. Reclaim uses AI-assisted connectors and cryptographic verification to automate more of the standard path.</p>
+        </div>
+        <div className="economics-grid">
+          <article className="economics-card">
+            <div className="economics-tag mono">01 · COVERAGE</div>
+            <h3>One global source layer</h3>
+            <p>Use the same integration across employers, universities, airlines, hotels, and countries instead of stitching together regional vendors.</p>
+          </article>
+          <article className="economics-card">
+            <div className="economics-tag mono">02 · AI</div>
+            <h3>Connectors scale like software</h3>
+            <p>AI accelerates how source connectors are created and maintained. Adding coverage no longer needs a traditional data partnership for every source.</p>
+          </article>
+          <article className="economics-card economics-card--accent">
+            <div className="economics-tag mono">03 · CRYPTOGRAPHY</div>
+            <h3>Proof replaces routine review</h3>
+            <p>The returned fact is verified cryptographically. Client-side computation and fraud impossibility slash costs.</p>
+          </article>
+        </div>
+        <div className="trust-heading" id="trust">
+          <div className="eyebrow"><span className="dot"></span>Enterprise ready</div>
+          <p>SOC 2 Type II · ISO 27001 · GDPR ready · Open-source cryptography · Independent audits</p>
         </div>
         <div className="trust-bar">
           <a href="mailto:admin@reclaimprotocol.org?subject=Compliance%20certificates" className="trust-action">
@@ -349,288 +396,52 @@ function Compliance() {
   );
 }
 
-/* ---------- Numbers ---------- */
-function Numbers() {
-  const stats = [
-    { num: '3M+',  lbl: 'Verifications processed' },
-    { num: '0%',   lbl: 'Fraud' },
-    { num: '45%+', lbl: 'Conversion rates, upto' },
-    { num: '29K+', lbl: 'Universities' },
-    { num: '10K+', lbl: 'Employers' },
-    { num: '100+', lbl: 'Airlines & hotels' },
+/* ---------- Customer results ---------- */
+function Results() {
+  const cases = [
+    {
+      tag: 'GLOBAL EDUCATION',
+      result: '7% → 44%',
+      title: 'Conversion after replacing document verification',
+      body: 'Observed in one customer deployment: a student platform expanded into hard-to-verify geographies while moving verification conversion from 7% to 44%.',
+    },
+    {
+      tag: 'LOYALTY PROGRAM',
+      result: '90%+',
+      title: 'Verification cost reduction',
+      body: 'Observed in one customer deployment: a global loyalty company replaced a high-cost workflow and cut the verification bill by more than 90%.',
+    },
+    {
+      tag: 'PRODUCTION SCALE',
+      result: '4M+',
+      title: 'Verifications processed',
+      body: 'Reclaim-reported platform total as of July 2026 across education, employment, loyalty, and other verification categories.',
+    },
   ];
   return (
-    <section className="section-pad" id="numbers">
+    <section className="section-pad" id="results">
       <div className="wrap">
         <div className="section-head">
           <div>
-            <div className="eyebrow"><span className="dot"></span>Reclaim Protocol in numbers</div>
-            <h2 style={{ marginTop: '12px' }}>Verifiable.<br />At scale.</h2>
+            <div className="eyebrow"><span className="dot"></span>New technology, battle tested.</div>
+            <h2 style={{ marginTop: '12px' }}>Not a theory.<br />Already in production.</h2>
           </div>
+          <p className="right">Reclaim Protocol powers verifications for several Fortune 500 companies.</p>
         </div>
-        <div className="numbers-grid">
-          {stats.map((s, i) => (
-            <div className="numbers-cell" key={i}>
-              <div className="numbers-num">{s.num}</div>
-              <div className="numbers-lbl">{s.lbl}</div>
-            </div>
+        <div className="case-study-grid">
+          {cases.map((item) => (
+            <article className="case-study-card" key={item.tag}>
+              <div className="case-study-tag mono">{item.tag}</div>
+              <div className="case-study-result">{item.result}</div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
           ))}
         </div>
-        <p className="breadth-line" style={{ marginTop: '40px' }}>
-          Across customers in <b>airline loyalty</b>, <b>mortgage &amp; lending</b>, and <b>background checks</b> — happy to introduce on request.
-        </p>
-        <div className="note" style={{ marginTop: '40px' }}>
-          <div className="note-avatar">
-            <img src="/maddy.png" alt="Madhavan Malolan" />
-          </div>
-          <div>
-            <p>&ldquo;We started this research in 2022 because we could see what AI was about to do to the internet. Documents would become trivially forgeable; the verification stack the entire economy runs on would silently break. We built Reclaim Protocol so every fact you verify is straight from the source — no document uploads, no phishing. All verified using cryptography, so even a single byte or pixel tampered with is caught trivially.&rdquo;</p>
-            <p style={{ marginTop: '12px' }}>&ldquo;The better the AI models get, the more fraud there is — and the more you&apos;ll need Reclaim Protocol.&rdquo;</p>
-            <div className="signoff">Madhavan (Maddy) Malolan <span>· Cofounder &amp; CEO</span></div>
-          </div>
+        <div className="case-study-cta">
+          <span>Want the customer, architecture, and before/after economics?</span>
+          <a href="mailto:admin@reclaimprotocol.org?subject=Request%20case%20study%20under%20NDA" className="btn btn-primary">Request case study under NDA →</a>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Fraud widget (real API-calling version) ---------- */
-function FraudWidget() {
-  const [stage, setStage] = useState<'idle' | 'loading' | 'forged' | 'reclaim'>('idle');
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [instruction, setInstruction] = useState('');
-  const [consent, setConsent] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [resultUrl, setResultUrl] = useState<string | null>(null);
-  const [isImage, setIsImage] = useState(false);
-  const [processingTime, setProcessingTime] = useState(0);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    if (stage === 'loading') {
-      setProgress(0);
-      progressInterval.current = setInterval(() => {
-        setProgress((prev) => (prev < 92 ? prev + 1 : prev));
-      }, 900);
-    } else {
-      if (progressInterval.current) clearInterval(progressInterval.current);
-    }
-    return () => { if (progressInterval.current) clearInterval(progressInterval.current); };
-  }, [stage]);
-
-  const canForge = consent && instruction.trim().length > 0 && !!uploadedFile && stage === 'idle';
-
-  const convertPDFToImage = async (file: File): Promise<Blob> => {
-    const pdfjsLib = await import('pdfjs-dist');
-    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.mjs', import.meta.url).toString();
-    const arrayBuffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-    const page = await pdf.getPage(1);
-    const viewport = page.getViewport({ scale: 2.0 });
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d')!;
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    await page.render({ canvas, canvasContext: context, viewport }).promise;
-    return new Promise((resolve) => { canvas.toBlob((blob) => resolve(blob!), 'image/png'); });
-  };
-
-  const handleForge = async () => {
-    if (!uploadedFile || !instruction) return;
-    setStage('loading');
-    const startTime = Date.now();
-    const formData = new FormData();
-    try {
-      if (uploadedFile.type === 'application/pdf') {
-        const imageBlob = await convertPDFToImage(uploadedFile);
-        formData.append('image', imageBlob, 'converted.png');
-        formData.append('originalFile', uploadedFile);
-      } else {
-        formData.append('image', uploadedFile);
-      }
-      formData.append('prompt', 'Change the value of ' + instruction);
-      formData.append('model', 'qwen3');
-      const response = await fetch('/api/edit-document', { method: 'POST', body: formData });
-      const elapsed = Math.round((Date.now() - startTime) / 1000);
-      setProcessingTime(elapsed);
-      if (response.ok) {
-        const blob = await response.blob();
-        const contentType = response.headers.get('content-type') || '';
-        const url = URL.createObjectURL(blob);
-        setResultUrl(url);
-        setIsImage(contentType.includes('image'));
-        setStage('forged');
-      } else {
-        setStage('forged');
-        setResultUrl(null);
-      }
-    } catch {
-      setStage('forged');
-      setResultUrl(null);
-    }
-  };
-
-  const reset = () => {
-    setStage('idle');
-    setUploadedFile(null);
-    setInstruction('');
-    setConsent(false);
-    setResultUrl(null);
-    setProgress(0);
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
-
-  return (
-    <div className="rwid" id="widget">
-      <div className="rwid-banner">
-        <div className="rwid-title">Try it yourself!</div>
-        <div className="rwid-sub">See how trivial it is to generate a fake document</div>
-      </div>
-      <div className="rwid-body">
-        {stage === 'idle' && (
-          <>
-            <div
-              className={`rwid-upload ${uploadedFile ? 'is-filled' : ''}`}
-              onClick={() => fileInputRef.current?.click()}
-              role="button"
-              tabIndex={0}
-            >
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept=".pdf,image/png,image/jpeg"
-                hidden
-                onChange={(e) => {
-                  const f = e.target.files?.[0];
-                  if (f) setUploadedFile(f);
-                }}
-              />
-              <div className="rwid-upload-icon">
-                <svg width="44" height="52" viewBox="0 0 44 52" fill="none">
-                  <path d="M6 4h22l10 10v32a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="#0000ee" strokeWidth="1.5" fill="#fff" />
-                  <path d="M28 4v10h10" stroke="#0000ee" strokeWidth="1.5" fill="none" />
-                  <line x1="11" y1="22" x2="31" y2="22" stroke="#0000ee" strokeWidth="1.4" strokeLinecap="round" />
-                  <line x1="11" y1="28" x2="31" y2="28" stroke="#0000ee" strokeWidth="1.4" strokeLinecap="round" />
-                  <line x1="11" y1="34" x2="25" y2="34" stroke="#0000ee" strokeWidth="1.4" strokeLinecap="round" />
-                </svg>
-              </div>
-              {!uploadedFile ? (
-                <>
-                  <div className="rwid-upload-text">Click to upload</div>
-                  <div className="rwid-upload-hint">PDF or Image (PNG, JPG)</div>
-                </>
-              ) : (
-                <>
-                  <div className="rwid-upload-text">{uploadedFile.name}</div>
-                  <div className="rwid-upload-hint">Click to change</div>
-                </>
-              )}
-            </div>
-            <div>
-              <div className="rwid-label">What to change?</div>
-              <div className="rwid-instr">
-                <span className="rwid-instr-pill">Change the value of</span>
-                <input
-                  className="rwid-instr-input"
-                  placeholder="e.g., name to John Doe"
-                  value={instruction}
-                  onChange={(e) => setInstruction(e.target.value.slice(0, 140))}
-                />
-              </div>
-              <div className="rwid-counter mono">{instruction.length}/140</div>
-            </div>
-            <label className="rwid-consent">
-              <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-              <span>I understand this is for educational purposes alone</span>
-            </label>
-            <button
-              className={`rwid-cta ${canForge ? 'is-on' : 'is-off'}`}
-              disabled={!canForge}
-              onClick={handleForge}
-            >
-              <span>🔧</span>&nbsp;&nbsp;Generate fake document
-            </button>
-          </>
-        )}
-
-        {stage === 'loading' && (
-          <button className="rwid-cta is-loading" disabled>
-            <div className="rwid-progress-fill" style={{ width: `${progress}%` }} />
-            <span className="rwid-cta-label">⚡ Processing...</span>
-          </button>
-        )}
-
-        {stage === 'forged' && (
-          <>
-            <div className="rwid-result rwid-result--bad">
-              <div className="rwid-result-tag mono">● VERIFICATION — DOCUMENT UPLOAD</div>
-              <div className="rwid-result-h">
-                Fake document generated in <b>{processingTime}s</b>. Your current pipeline would <b>accept</b> this forgery.
-              </div>
-              <div className="rwid-result-p">OCR + selfie + liveness can&apos;t tell. Pixels are pixels.</div>
-              {resultUrl && (
-                <div className="rwid-result-preview">
-                  {isImage ? (
-                    <img src={resultUrl} alt="Forged document" />
-                  ) : (
-                    <iframe src={`${resultUrl}#toolbar=0&navpanes=0&scrollbar=0`} title="Forged document" />
-                  )}
-                  <a href={resultUrl} download={`forged-${uploadedFile?.name}`} className="rwid-result-download" title="Download">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M8 1v10M8 11L4 7M8 11l4-4M2 14h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </a>
-                </div>
-              )}
-              <button className="btn btn-sm btn-primary" style={{ marginTop: '14px' }} onClick={() => setStage('reclaim')}>
-                Now try Reclaim →
-              </button>
-            </div>
-          </>
-        )}
-
-        {stage === 'reclaim' && (
-          <>
-            <div className="rwid-result rwid-result--good">
-              <div className="rwid-result-tag mono" style={{ color: 'var(--blue)' }}>● VERIFICATION — RECLAIM PROTOCOL</div>
-              <div className="rwid-result-h">Forgery <b>rejected</b>. The real answer came straight from the source.</div>
-              <div className="mono" style={{ fontSize: '11px', color: 'var(--mute)', marginTop: '10px', wordBreak: 'break-all', lineHeight: 1.55 }}>
-                zkProof: 0x{Array.from({ length: 64 }, (_, i) => '0123456789abcdef'[(i * 31 + 7) % 16]).join('')}
-              </div>
-              <div style={{ marginTop: '14px' }}>
-                <a href="#pilot" className="btn btn-sm btn-primary">Launch a pilot →</a>
-                <button className="btn btn-sm btn-link" style={{ marginLeft: '12px' }} onClick={reset}>Reset demo</button>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ---------- Fraud section ---------- */
-function FraudSection() {
-  return (
-    <section className="section-pad" id="fraud" style={{ background: 'var(--bg-2)' }}>
-      <div className="wrap fraud-wrap">
-        <div className="fraud-copy">
-          <div className="eyebrow"><span className="dot"></span>Changing landscape</div>
-          <h2 style={{ marginTop: '12px' }}>New world. But,<br />old verification stack?</h2>
-          <p className="lead" style={{ marginTop: '18px' }}>
-            <b style={{ color: 'var(--ink)' }}>AI fakes any document in 10 seconds.</b>{' '}
-            <b style={{ color: 'var(--ink)' }}>Regulators are watching more closely than ever before.</b>{' '}
-            <b style={{ color: 'var(--ink)' }}>Your users are globally distributed.</b>
-            <br />The old guard wasn&apos;t built for any of it:
-          </p>
-          <ul className="fraud-points">
-            <li><b>Document uploads</b> AI can fake it pixel to pixel. Impossible to catch.</li>
-            <li><b>Central Databases</b> Country specific, and often stale.</li>
-            <li><b>Phishing websites</b> Strict laws against storing and using user credentials.</li>
-          </ul>
-        </div>
-        <FraudWidget />
       </div>
     </section>
   );
@@ -642,18 +453,18 @@ function Integration() {
     <section className="section-pad" id="integrate">
       <div className="wrap integration">
         <div>
-          <div className="eyebrow"><span className="dot"></span>Integration</div>
-          <h2 style={{ marginTop: '12px' }}>The engineering team will love you for this.</h2>
-          <p className="lead" style={{ marginTop: '16px' }}>Grab an API key, paste the SDK snippet, ship to staging this afternoon. Built by engineers, for engineers.</p>
+          <div className="eyebrow"><span className="dot"></span>Your devs will love us</div>
+          <h2 style={{ marginTop: '12px' }}>Global coverage without vendor sprawl.</h2>
+          <p className="lead" style={{ marginTop: '16px' }}>Simple integration that a coding agent can one-shot, with great MCP support. Reclaim Protocol is built by devs for devs. Send them our docs.</p>
           <div className="checklist">
-            <div className="check-row">Self-serve API keys and docs for all frameworks. No sales call needed.</div>
-            <div className="check-row">AI and MCP support that works with coding agents.</div>
-            <div className="check-row">Cryptography that makes data security nightmares go away.</div>
-            <div className="check-row">Open-source code with permissive licenses.</div>
+            <div className="check-row">Self-serve API keys. No sales call required to test.</div>
+            <div className="check-row">Preconfigured full-stack flows for global verification.</div>
+            <div className="check-row">AI-assisted provider tooling for new authenticated sources.</div>
+            <div className="check-row">Published starting prices from free to $0.10 at Enterprise scale.</div>
           </div>
           <div className="row" style={{ marginTop: '28px' }}>
+            <CopyDocsLinkButton />
             <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Integrate now →</a>
-            <a href="https://drive.google.com/file/d/1Tok4J6mv7PwRCbwxVNhv4alS82sQJI4E/view" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Read Whitepaper</a>
           </div>
         </div>
         <div className="code-block">
@@ -693,21 +504,20 @@ function FinalCTA() {
             <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>
               <span className="dot" style={{ background: '#fff' }}></span>READY WHEN YOU ARE
             </div>
-            <h2 style={{ marginTop: '14px' }}>Lower fraud. Stronger compliance.<br />One integration.</h2>
+            <h2 style={{ marginTop: '14px' }}>Run 25 verifications free.<br />Scale to $0.10 each.</h2>
             <p>
-              Plug in a test API key in 10 lines of code. Throw your fraud team&apos;s hardest examples
-              at it. If we can&apos;t catch it, you don&apos;t pay.
+              Put Reclaim beside the incumbent you already pay. Compare geographic coverage, conversion, and the final bill.
             </p>
             <div className="cta-fineprint mono">
               <span>● No sales call to start</span>
-              <span>● Free test mode</span>
-              <span>● Production in days, not quarters</span>
+              <span>● 25 free every month</span>
+              <span>● Published Enterprise starting rate</span>
             </div>
           </div>
           <div className="cta-side">
-            <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-white">Talk to founder →</a>
-            <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-outline-w">Integrate now →</a>
-            <a href="mailto:admin@reclaimprotocol.org?subject=Pilot%20request" className="cta-side-link mono">admin@reclaimprotocol.org ↗</a>
+            <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-white">Start free →</a>
+            <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-outline-w">Get volume pricing →</a>
+            <a href="#pricing" className="cta-side-link mono">See every plan ↑</a>
           </div>
         </div>
       </div>
@@ -722,11 +532,11 @@ function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
-            <a href="/" className="brand">
+            <Link href="/" className="brand">
               <img className="brand-mark" src="/reclaim-logo.png" alt="Reclaim Protocol" />
               <span>Reclaim Protocol</span>
-            </a>
-            <p className="foot-tag">The consumer verification AI can&apos;t fake. Compliant by design. Secured by cryptography.</p>
+            </Link>
+            <p className="foot-tag">Global education, employment, and loyalty verification from $0.10 at scale.</p>
             <div className="foot-socials">
               <a href="https://github.com/reclaimprotocol" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="foot-social">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
@@ -738,7 +548,7 @@ function Footer() {
                   <path d="M13.86 1.5h2.5l-5.46 6.24L17 16.5h-5.02l-3.93-5.14L3.55 16.5H1.04l5.84-6.68L1 1.5h5.15l3.55 4.7L13.86 1.5zm-.88 13.5h1.39L5.08 2.94H3.59L12.98 15z" />
                 </svg>
               </a>
-              <a href="https://www.linkedin.com/company/reclaim-protocol" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="foot-social">
+              <a href="https://www.linkedin.com/company/reclaimprotocol/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="foot-social">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
                   <path d="M3.7 6.06H1V16.5h2.7V6.06zM2.35 1.5C1.43 1.5.85 2.1.85 2.9c0 .77.55 1.4 1.45 1.4h.02c.94 0 1.52-.63 1.52-1.4 0-.8-.58-1.4-1.49-1.4zM16.5 16.5v-5.98c0-3.2-1.71-4.7-3.99-4.7-1.84 0-2.67 1.01-3.13 1.72V6.06H6.68c.04.76 0 10.44 0 10.44h2.7v-5.83c0-.24.02-.49.09-.66.2-.49.65-.99 1.4-.99.99 0 1.39.75 1.39 1.85v5.63h2.74z" />
                 </svg>
@@ -748,9 +558,9 @@ function Footer() {
           <div>
             <h5>Solutions</h5>
             <ul>
-              <li><a href="/employment">Employment &amp; income</a></li>
-              <li><a href="/education">Education enrollment</a></li>
-              <li><a href="/status-match">Loyalty &amp; status match</a></li>
+              <li><Link href="/employment">Employment &amp; income</Link></li>
+              <li><Link href="/education">Education enrollment</Link></li>
+              <li><Link href="/status-match">Loyalty &amp; status match</Link></li>
               <li><a href="mailto:admin@reclaimprotocol.org?subject=Verification%20request">Something else →</a></li>
             </ul>
           </div>
@@ -768,7 +578,7 @@ function Footer() {
             <ul>
               <li><a href="https://trust.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Trust center</a></li>
               <li><a href="mailto:admin@reclaimprotocol.org?subject=Compliance%20certificates">SOC 2 · ISO · GDPR</a></li>
-              <li><a href="#compliance">Security audits</a></li>
+              <li><a href="#trust">Security audits</a></li>
               <li><a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer">Talk to founder</a></li>
             </ul>
           </div>
@@ -795,11 +605,11 @@ export default function Home() {
       <Banner />
       <Nav />
       <Hero />
+      <Pricing />
       <Verticals />
+      <Results />
+      <EconomicsAndTrust />
       <HowItWorks />
-      <Compliance />
-      <Numbers />
-      <FraudSection />
       <Integration />
       <FinalCTA />
       <Footer />
