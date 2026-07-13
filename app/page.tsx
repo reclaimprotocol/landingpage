@@ -48,7 +48,7 @@ function Hero() {
           <span className="yc-badge"><span className="yc-badge-mark">Y</span>Backed by YC</span>
         </div>
         <h1 style={{ marginTop: '20px' }}>
-          <strong>Education, Employment and Loyalty</strong> verifications under $1.
+          <strong>Education and Employment</strong> verification under $1.
         </h1>
         <p className="lead" style={{ marginTop: '20px' }}>
           Advances in AI and cryptography help slash prices by up to 99.9%. You are probably being overcharged right now.
@@ -59,7 +59,7 @@ function Hero() {
         </div>
         <div className="hero-meta">
           <span><b>29K+</b> universities</span>
-          <span><b>100+</b> loyalty programs</span>
+          <span><b>90+</b> countries</span>
           <span><b>2–30s</b> proof generation</span>
         </div>
       </div>
@@ -188,18 +188,6 @@ function Verticals() {
         caption: 'Verified directly from 29,000+ universities, globally.',
       },
     },
-    {
-      title: 'Loyalty & status match',
-      tag: '100+ Programs · Hotels & Airlines',
-      href: '/status-match',
-      body: 'Own the verification layer for airline, hotel, cruise, rental, and card status. Keep control of the product and the unit economics.',
-      proof: {
-        kind: 'photo' as const,
-        src: '/loyalty-awards.png',
-        alt: 'Golden Loyalty Awards 2025',
-        caption: 'Winner — Startup of the Year, Loyalty Awards, Amsterdam',
-      },
-    },
   ];
 
   return (
@@ -220,17 +208,13 @@ function Verticals() {
               {it.proof && (
                 <div className={`proof proof--${it.proof.kind}`}>
                   <div className="proof-media">
-                    {it.proof.kind === 'logos' ? (
-                      <div className="proof-logos-grid">
-                        {it.proof.sources.map((s) => (
-                          <div className="proof-logo-cell" key={s.name} title={s.name}>
-                            <img src={s.src} alt={s.name} loading="lazy" />
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <img src={(it.proof as { kind: 'photo'; src: string; alt: string; caption: string }).src} alt={(it.proof as { kind: 'photo'; src: string; alt: string; caption: string }).alt} loading="lazy" />
-                    )}
+                    <div className="proof-logos-grid">
+                      {it.proof.sources.map((s) => (
+                        <div className="proof-logo-cell" key={s.name} title={s.name}>
+                          <img src={s.src} alt={s.name} loading="lazy" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <div className="proof-caption">
                     <span>{it.proof.caption}</span>
@@ -404,12 +388,6 @@ function Results() {
       result: '7% → 44%',
       title: 'Conversion after replacing document verification',
       body: 'Observed in one customer deployment: a student platform expanded into hard-to-verify geographies while moving verification conversion from 7% to 44%.',
-    },
-    {
-      tag: 'LOYALTY PROGRAM',
-      result: '90%+',
-      title: 'Verification cost reduction',
-      body: 'Observed in one customer deployment: a global loyalty company replaced a high-cost workflow and cut the verification bill by more than 90%.',
     },
     {
       tag: 'PRODUCTION SCALE',
