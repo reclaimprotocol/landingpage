@@ -376,7 +376,7 @@ function Footer() {
               <Image className="brand-mark" src="/reclaim-logo.png" alt="Reclaim Protocol" width={26} height={26} />
               <span>Reclaim Protocol</span>
             </Link>
-            <p className="foot-tag">Global employment, education and loyalty verification—from $0.10 at scale.</p>
+            <p className="foot-tag">Global employment and education verification—from $0.10 at scale.</p>
             <div className="foot-socials">
               <a href="https://github.com/reclaimprotocol" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="foot-social">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 0a9 9 0 00-2.85 17.54c.45.08.62-.2.62-.43v-1.66c-2.5.54-3.03-1.07-3.03-1.07-.41-1.04-1-1.32-1-1.32-.81-.55.06-.54.06-.54.9.06 1.37.93 1.37.93.8 1.37 2.1.97 2.61.74.08-.58.31-.97.57-1.2-2-.22-4.1-1-4.1-4.46 0-.98.35-1.79.93-2.42-.09-.23-.4-1.15.09-2.4 0 0 .76-.24 2.49.93a8.65 8.65 0 014.54 0c1.72-1.17 2.48-.93 2.48-.93.5 1.25.18 2.17.09 2.4.58.63.92 1.44.92 2.42 0 3.47-2.1 4.24-4.11 4.46.32.28.6.83.6 1.67v2.47c0 .24.17.52.63.43A9 9 0 009 0z" /></svg>
@@ -394,7 +394,6 @@ function Footer() {
             <ul>
               <li><Link href="/employment">Employment &amp; income</Link></li>
               <li><Link href="/education">Education enrollment</Link></li>
-              <li><Link href="/status-match">Loyalty &amp; status match</Link></li>
               <li><a href="mailto:admin@reclaimprotocol.org?subject=Verification%20request">Something else →</a></li>
             </ul>
           </div>

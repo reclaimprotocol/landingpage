@@ -514,7 +514,7 @@ function Footer() {
               <img className="brand-mark" src="/reclaim-logo.png" alt="Reclaim Protocol" />
               <span>Reclaim Protocol</span>
             </Link>
-            <p className="foot-tag">Global education, employment, and loyalty verification from $0.10 at scale.</p>
+            <p className="foot-tag">Global education and employment verification from $0.10 at scale.</p>
             <div className="foot-socials">
               <a href="https://github.com/reclaimprotocol" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="foot-social">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
@@ -538,7 +538,6 @@ function Footer() {
             <ul>
               <li><Link href="/employment">Employment &amp; income</Link></li>
               <li><Link href="/education">Education enrollment</Link></li>
-              <li><Link href="/status-match">Loyalty &amp; status match</Link></li>
               <li><a href="mailto:admin@reclaimprotocol.org?subject=Verification%20request">Something else →</a></li>
             </ul>
           </div>

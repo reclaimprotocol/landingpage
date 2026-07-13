@@ -291,7 +291,6 @@ function Footer() {
             <ul>
               <li><a href="/employment">Employment &amp; income</a></li>
               <li><a href="/education">Education enrollment</a></li>
-              <li><a href="/status-match">Loyalty &amp; status match</a></li>
               <li><a href="mailto:admin@reclaimprotocol.org?subject=Verification%20request">Something else →</a></li>
             </ul>
           </div>

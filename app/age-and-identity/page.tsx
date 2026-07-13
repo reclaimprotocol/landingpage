@@ -690,7 +690,6 @@ export default function Identity() {
             <div>
               <h4 className="text-white font-bold text-lg mb-4">Product</h4>
               <ul className="footer-links">
-                <li><a href="/status-match">Status Match</a></li>
                 <li><a href="/education">Education</a></li>
                 <li><a href="/identity">Identity</a></li>
               </ul>
