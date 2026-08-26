@@ -1,0 +1,3 @@
+Contact: mailto:support@reclaimprotocol.org
+Expires: 2027-08-26T00:00:00Z
+Preferred-Languages: en
