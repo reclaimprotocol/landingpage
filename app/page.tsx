@@ -12,7 +12,7 @@ function Nav() {
         </Link>
         <nav className="nav-links">
           <a href="#verify">Solutions</a>
-          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact us</a>
           <a href="#results">Results</a>
           <a href="https://trust.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Trust Center</a>
           <a href="https://blog.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Blog</a>
@@ -30,10 +30,10 @@ function Nav() {
 function Banner() {
   return (
     <div className="banner">
-      <span className="pill">Pricing</span>
-      <span><b>25 free</b> verifications every month · <b>$0.10</b> at Enterprise scale</span>
+      <span className="pill">Enterprise</span>
+      <span>Global education and employment verification, built for enterprise scale</span>
       <span style={{ opacity: 0.6 }}>·</span>
-      <a href="#pricing" style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '3px' }}>See pricing →</a>
+      <a href="#contact" style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Contact us →</a>
     </div>
   );
 }
@@ -44,18 +44,18 @@ function Hero() {
     <section className="hero no-border" style={{ borderTop: 0 }}>
       <div className="wrap hero-wrap">
         <div className="hero-kicker">
-          <div className="eyebrow"><span className="dot"></span>Global coverage | $0.1 at scale | 45%+ conversion rates</div>
+          <div className="eyebrow"><span className="dot"></span>Global coverage | Enterprise scale | 45%+ conversion rates</div>
           <span className="yc-badge"><span className="yc-badge-mark">Y</span>Backed by YC</span>
         </div>
         <h1 style={{ marginTop: '20px' }}>
-          <strong>Education and Employment</strong> verification under $1.
+          <strong>Education and Employment</strong> verification, reimagined.
         </h1>
         <p className="lead" style={{ marginTop: '20px' }}>
-          Advances in AI and cryptography help slash prices by up to 99.9%. You are probably being overcharged right now.
+          Advances in AI and cryptography make verification dramatically cheaper than the legacy stack. You are probably being overcharged right now.
         </p>
         <div className="hero-actions">
           <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Start free →</a>
-          <a href="#pricing" className="btn btn-ghost">See pricing →</a>
+          <a href="#contact" className="btn btn-ghost">Contact us →</a>
         </div>
         <div className="hero-meta">
           <span><b>29K+</b> universities</span>
@@ -67,78 +67,27 @@ function Hero() {
   );
 }
 
-/* ---------- Pricing ---------- */
-function Pricing() {
-  const plans = [
-    {
-      name: 'Hacker',
-      price: 'Free',
-      cadence: 'No credit card needed',
-      bestFor: 'Best for trying out',
-      details: ['25 included verifications per month', 'Up to 100 zkFetches', 'Use AI tools for integration'],
-      cta: 'Start free →',
-      href: 'https://docs.reclaimprotocol.org',
-    },
-    {
-      name: 'Solopreneur',
-      price: '$2,000/m',
-      cadence: '2,000 included verifications',
-      bestFor: 'Best for pilots and PoCs',
-      details: ['$1.00 effective rate at full included usage', '20,000 zkFetches included', 'Email support'],
-      cta: 'Integrate now →',
-      href: 'https://docs.reclaimprotocol.org',
-    },
-    {
-      name: 'Startup',
-      price: '$5,000/m',
-      cadence: '10,000 verifications / month',
-      bestFor: 'Best for projects getting traction',
-      details: ['$0.50 effective rate at full included usage', '100,000 zkFetches included', 'Dedicated shared Slack channel'],
-      cta: 'Integrate now →',
-      href: 'https://docs.reclaimprotocol.org',
-      featured: true,
-    },
-    {
-      name: 'Enterprise',
-      price: '$10,000/m',
-      cadence: '100,000 verifications per month',
-      bestFor: 'Best for full scale products',
-      details: ['$0.10 effective rate at full included usage', '1M zkFetches included', '24-hour SLA, 7 days a week', 'Other custom requests'],
-      cta: 'Speak to founder →',
-      href: 'https://calendly.com/madhavanmalolan/call',
-    },
-  ];
-
+/* ---------- Contact ---------- */
+function Contact() {
   return (
-    <section className="section-pad pricing-section" id="pricing">
+    <section className="section-pad pricing-section" id="contact">
       <div className="wrap">
         <div className="section-head">
           <div>
-            <div className="eyebrow"><span className="dot"></span>Simple transparent pricing</div>
-            <h2 style={{ marginTop: '12px' }}>The price is the point.</h2>
+            <div className="eyebrow"><span className="dot"></span>Enterprise</div>
+            <h2 style={{ marginTop: '12px' }}>Let&apos;s talk about your use case.</h2>
           </div>
           <p className="right">
-            No need to jump through sales calls just to get a price. You can get started without even talking to us.
+            Every deployment is different — volume, geographies, compliance and SLAs. Tell us what you need and we&apos;ll put together a plan that fits.
           </p>
         </div>
-        <div className="pricing-grid">
-          {plans.map((plan) => (
-            <article className={`price-card${plan.featured ? ' price-card--featured' : ''}`} key={plan.name}>
-              {plan.featured && <div className="price-badge mono">RECOMMENDED</div>}
-              <div className="price-name mono">{plan.name}</div>
-              <div className="price-amount">{plan.price}</div>
-              <div className="price-cadence">{plan.cadence}</div>
-              {plan.bestFor && <div className="price-included">{plan.bestFor}</div>}
-              <ul className="price-details">
-                {plan.details.map((detail) => <li key={detail}>{detail}</li>)}
-              </ul>
-              <a className={`btn ${plan.featured ? 'btn-primary' : 'btn-ghost'}`} href={plan.href} target="_blank" rel="noopener noreferrer">{plan.cta}</a>
-            </article>
-          ))}
+        <div className="hero-actions" style={{ marginTop: '8px' }}>
+          <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Talk to the founder →</a>
+          <a href="mailto:admin@reclaimprotocol.org?subject=Enterprise%20enquiry" className="btn btn-ghost">Email us →</a>
         </div>
         <p className="pricing-footnote">
-          * 99.9% savings as compared to{' '}
-          <a href="https://legalclarity.org/usps-employment-verification-process-for-verifiers/" target="_blank" rel="noopener noreferrer">incumbents listed here ↗</a>
+          Prefer to build first? Start with the{' '}
+          <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">developer docs ↗</a> and reach out whenever you&apos;re ready.
         </p>
       </div>
     </section>
@@ -195,7 +144,7 @@ function Verticals() {
       <div className="wrap">
         <div className="section-head">
           <div>
-            <div className="eyebrow"><span className="dot"></span>New technology, new pricing</div>
+            <div className="eyebrow"><span className="dot"></span>New technology, new economics</div>
             <h2 style={{ marginTop: '12px' }}>Cut the legacy tax.<br />Keep the margin.</h2>
           </div>
         </div>
@@ -482,20 +431,20 @@ function FinalCTA() {
             <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>
               <span className="dot" style={{ background: '#fff' }}></span>READY WHEN YOU ARE
             </div>
-            <h2 style={{ marginTop: '14px' }}>Run 25 verifications free.<br />Scale to $0.10 each.</h2>
+            <h2 style={{ marginTop: '14px' }}>Run a pilot.<br />See the difference.</h2>
             <p>
               Put Reclaim beside the incumbent you already pay. Compare geographic coverage, conversion, and the final bill.
             </p>
             <div className="cta-fineprint mono">
-              <span>● No sales call to start</span>
-              <span>● 25 free every month</span>
-              <span>● Published Enterprise starting rate</span>
+              <span>● Pilot-friendly</span>
+              <span>● Global coverage</span>
+              <span>● Enterprise SLAs</span>
             </div>
           </div>
           <div className="cta-side">
             <a href="https://docs.reclaimprotocol.org" target="_blank" rel="noopener noreferrer" className="btn btn-white">Start free →</a>
-            <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-outline-w">Get volume pricing →</a>
-            <a href="#pricing" className="cta-side-link mono">See every plan ↑</a>
+            <a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer" className="btn btn-outline-w">Talk to the founder →</a>
+            <a href="#contact" className="cta-side-link mono">Contact us ↑</a>
           </div>
         </div>
       </div>
@@ -514,7 +463,7 @@ function Footer() {
               <img className="brand-mark" src="/reclaim-logo.png" alt="Reclaim Protocol" />
               <span>Reclaim Protocol</span>
             </Link>
-            <p className="foot-tag">Global education and employment verification from $0.10 at scale.</p>
+            <p className="foot-tag">Global education and employment verification, at enterprise scale.</p>
             <div className="foot-socials">
               <a href="https://github.com/reclaimprotocol" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="foot-social">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
@@ -582,7 +531,7 @@ export default function Home() {
       <Banner />
       <Nav />
       <Hero />
-      <Pricing />
+      <Contact />
       <Verticals />
       <Results />
       <EconomicsAndTrust />
