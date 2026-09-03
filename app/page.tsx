@@ -100,7 +100,7 @@ function Pricing() {
     },
     {
       name: 'Enterprise',
-      price: '$10,000/m',
+      price: 'Talk to us',
       cadence: '100,000 verifications per month',
       bestFor: 'Best for full scale products',
       details: ['$0.10 effective rate at full included usage', '1M zkFetches included', '24-hour SLA, 7 days a week', 'Other custom requests'],
