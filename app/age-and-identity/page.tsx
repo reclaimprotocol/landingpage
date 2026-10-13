@@ -132,7 +132,7 @@ export default function Identity() {
                 <tr>
                   <td className="row-label">Breach risk</td>
                   <td>🔴 High. Data held on server</td>
-                  <td className="highlight-column">🟢 Zero. There's nothing to leak</td>
+                  <td className="highlight-column">🟢 Zero. There&apos;s nothing to leak</td>
                 </tr>
                 <tr>
                   <td className="row-label">Spoofable by minors</td>

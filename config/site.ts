@@ -1,4 +1,7 @@
 export const siteConfig = {
+  demoUrl: 'https://letters.reclaimprotocol.org',
+  trustUrl: 'https://trust.reclaimprotocol.org',
+  sdkGuideUrl: 'https://docs.reclaimprotocol.org/manual/js-sdk/usage',
   bookingUrl: 'https://calendly.com/madhavanmalolan/call',
   docsUrl: 'https://docs.reclaimprotocol.org',
   blogUrl: 'https://blog.reclaimprotocol.org',
