@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is the Reclaim Protocol website, built with [Next.js](https://nextjs.org).
+
+See [the enterprise website guide](docs/enterprise-site.md) for the homepage and vertical-page structure, preview and browser checks, analytics adapter, and capability notes.
 
 ## Getting Started
 

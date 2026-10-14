@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from "next";
 import { privacyHtml } from "./content";
 
@@ -13,13 +14,13 @@ function Nav() {
   return (
     <header className="nav">
       <div className="wrap nav-inner">
-        <a href="/" className="brand">
+        <Link href="/" className="brand">
           <img className="brand-mark" src="/reclaim-logo.png" alt="Reclaim Protocol" />
           <span>Reclaim Protocol</span>
-        </a>
+        </Link>
         <nav className="nav-links">
-          <a href="/#verify">Solutions</a>
-          <a href="/#pricing">Pricing</a>
+          <Link href="/#verify">Solutions</Link>
+          <Link href="/#pricing">Pricing</Link>
           <a href="https://trust.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Trust Center</a>
           <a href="https://blog.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Blog</a>
           <a href="https://drive.google.com/file/d/1Tok4J6mv7PwRCbwxVNhv4alS82sQJI4E/view" target="_blank" rel="noopener noreferrer">Whitepaper</a>
@@ -38,10 +39,10 @@ function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
-            <a href="/" className="brand">
+            <Link href="/" className="brand">
               <img className="brand-mark" src="/reclaim-logo.png" alt="Reclaim Protocol" />
               <span>Reclaim Protocol</span>
-            </a>
+            </Link>
             <p className="foot-tag">The consumer verification AI can&apos;t fake. Compliant by design. Secured by cryptography.</p>
             <div className="foot-socials">
               <a href="https://github.com/reclaimprotocol" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="foot-social">
@@ -58,8 +59,8 @@ function Footer() {
           <div>
             <h5>Solutions</h5>
             <ul>
-              <li><a href="/employment">Employment &amp; income</a></li>
-              <li><a href="/education">Education enrollment</a></li>
+              <li><Link href="/employment">Employment &amp; income</Link></li>
+              <li><Link href="/education">Education enrollment</Link></li>
               <li><a href="mailto:admin@reclaimprotocol.org?subject=Verification%20request">Something else →</a></li>
             </ul>
           </div>
@@ -77,7 +78,7 @@ function Footer() {
             <ul>
               <li><a href="https://trust.reclaimprotocol.org" target="_blank" rel="noopener noreferrer">Trust center</a></li>
               <li><a href="mailto:admin@reclaimprotocol.org?subject=Compliance%20certificates">SOC 2 · ISO · GDPR</a></li>
-              <li><a href="/#trust">Security audits</a></li>
+              <li><Link href="/#trust">Security audits</Link></li>
               <li><a href="https://calendly.com/madhavanmalolan/call" target="_blank" rel="noopener noreferrer">Talk to founder</a></li>
             </ul>
           </div>
