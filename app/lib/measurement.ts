@@ -1,4 +1,4 @@
-export type Vertical = 'general' | 'research' | 'promotions' | 'status-match' | 'hiring' | 'other';
+export type Vertical = 'general' | 'research' | 'promotions' | 'government' | 'status-match' | 'hiring' | 'student-discounts' | 'other';
 export type MarketingEvent = 'cta_click' | 'demo_handoff' | 'booking_handoff' | 'illustration_started' | 'illustration_completed';
 export type Placement = 'nav' | 'hero' | 'use_case' | 'workflow' | 'pricing' | 'footer' | 'final' | 'illustration';
 
@@ -48,7 +48,15 @@ export function currentHref(href: string, vertical: Vertical, booking = false) {
   return attributedHref(href, vertical, booking, campaign());
 }
 
-type EventData = Campaign & { page: 'home' | 'research' | 'promotions'; vertical: Vertical; placement: Placement };
+const solutionPages = {
+  '/solutions/research': 'research',
+  '/solutions/promotions': 'promotions',
+  '/solutions/government': 'government',
+  '/solutions/hiring': 'hiring',
+  '/solutions/student-discounts': 'student-discounts',
+} as const;
+type Page = 'home' | (typeof solutionPages)[keyof typeof solutionPages];
+type EventData = Campaign & { page: Page; vertical: Vertical; placement: Placement };
 declare global {
   interface Window {
     reclaimAnalytics?: { track: (event: MarketingEvent, properties: EventData) => void };
@@ -58,7 +66,7 @@ declare global {
 
 export function track(event: MarketingEvent, vertical: Vertical, placement: Placement) {
   const path = window.location.pathname;
-  const page = path === '/solutions/promotions' ? 'promotions' : path === '/solutions/research' ? 'research' : 'home';
+  const page = solutionPages[path as keyof typeof solutionPages] ?? 'home';
   const properties: EventData = { ...campaign(), page, vertical, placement };
   try {
     if (window.reclaimAnalytics) window.reclaimAnalytics.track(event, properties);

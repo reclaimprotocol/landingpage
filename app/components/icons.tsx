@@ -1,4 +1,4 @@
-export type IconName = 'arrow' | 'check' | 'link' | 'shield' | 'globe' | 'bag' | 'users' | 'plane' | 'briefcase' | 'code' | 'card' | 'mail';
+export type IconName = 'arrow' | 'check' | 'link' | 'shield' | 'globe' | 'bag' | 'users' | 'plane' | 'briefcase' | 'code' | 'card' | 'mail' | 'building' | 'graduation';
 const paths: Record<IconName, React.ReactNode> = {
   arrow: <><path d="M4 12h15m-6-6 6 6-6 6" /></>,
   check: <path d="m5 12 4 4L19 6" />,
@@ -12,6 +12,8 @@ const paths: Record<IconName, React.ReactNode> = {
   code: <path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" />,
   card: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18M7 15h3" /></>,
   mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 6 9 7 9-7" /></>,
+  building: <><path d="m3 8 9-5 9 5H3Zm0 13h18M5 10v8m5-8v8m4-8v8m5-8v8M3 18h18" /></>,
+  graduation: <><path d="m2 9 10-5 10 5-10 5L2 9Zm4 2v6c4 3 8 3 12 0v-6m4-2v8" /></>,
 };
 export default function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
