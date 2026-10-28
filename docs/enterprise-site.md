@@ -19,13 +19,17 @@ PLAYWRIGHT_CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e
 
 The browser suite covers desktop and mobile layouts, WCAG A/AA automated checks, keyboard interactions, images, metadata, attribution, booking and demo handoffs, JavaScript-disabled content, and legacy routes. Screenshots are written to the ignored `test-results/` directory. Third-party navigation is intercepted in automated tests; the tests never submit a booking or connect a real account.
 
-Validated against the local production build: all 20 browser checks passed; build, TypeScript, and lint passed (11 existing image warnings). Additional 320px, 768px, and 1024px checks found no horizontal page overflow on the three changed pages. The requested availability sentence was removed from both vertical pages. Existing internal-link lint errors were corrected without changing their destinations. A missing native `canvas` binding was restored with `npm rebuild canvas`; no PDF API behavior was changed. The build still reports the existing AVIF files named `icon.png` and `apple-icon.png` as unoptimized assets.
+Validated against the local production build: all 32 desktop and mobile browser checks passed; build, TypeScript, and lint passed (11 existing warnings). Checks cover the five-card solution order, gap-section placement, new landing pages, verified-result view, government video, and attribution. The requested text removals and government reuse wording were also confirmed in the generated production HTML. The build still reports the existing AVIF files named `icon.png` and `apple-icon.png` as unoptimized assets.
 
 ## Content and extension
 
 - Homepage: `app/page.tsx`.
+- The homepage hero uses `app/components/verification-showcase.tsx`: a six-step, user-controlled walkthrough of an employment check. Original supplied screenshots live in `public/showcase/employment/`; each step has a caption, direct selection, Previous/Next controls, and replay. Screenshot navigation does not emit live-verification events. Research and promotions retain their illustrative demos.
 - Vertical content: `config/verticals.ts`; shared rendering: `app/components/vertical-page.tsx`.
 - New verticals need an explicit route, distinct metadata, three examples, workflow, boundaries, CTA, and FAQ. Do not add placeholder routes.
+- The main solution cards are Govt Services, Hiring BGV, Status match, Student Discounts, and Other workflows, in that order. Government and hiring use the shared vertical template with purpose-specific illustrations; Student Discounts uses a minimal announcement page. Research and promotions remain accessible from the footer.
+- New routes: `/solutions/government`, `/solutions/hiring`, and `/solutions/student-discounts`. The government video (`3CDvfm9DYjw`) is configured in `config/verticals.ts` and appears below the workflow section using a lazy-loaded YouTube privacy-enhanced embed.
+- The homepage gap section (`app/components/verification-gaps.tsx`) follows `#how` and shows existing checks → Reclaim for missing evidence → the existing decision workflow.
 - `evidence` accepts approved, vertical-specific customer quotes and source links. No approved research or purchase-verification case study was available, so no testimonial section is published. Existing customer assets remain available in `public/customers/` and `config/logos.ts`.
 - Existing pricing values, allocations, rates, and terms are preserved in `app/components/pricing.tsx`.
 - The existing routes and `/identity` redirect remain. Homepage anchors `verify`, `pricing`, `results`, `trust`, `integrate`, and `pilot` remain available.
@@ -47,6 +51,8 @@ Events are sent to `window.reclaimAnalytics.track(event, properties)` when insta
 | `illustration_completed` | Opening the local illustrative result |
 
 Properties are restricted to `page`, `vertical`, `placement`, and validated `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_id`. Campaign values must be non-personal tokens, 1–100 characters, containing only letters, digits, underscores, dots, and hyphens. `utm_term`, arbitrary URL parameters, referrer URLs, claims, account details, proof IDs, and verification results are never collected. Session storage preserves campaign tokens during navigation. Unavailable storage or a failed collector never prevents navigation.
+
+Government, hiring, and student-discount landing pages record their own page identity and carry their vertical context through booking links. Browser accessibility checks audit the page, excluding the third-party YouTube player; the embed’s title and destination are checked separately.
 
 Promotions links always carry `vertical=promotions`. Calendly links additionally carry `utm_content=promotions`, or append `.promotions` to an existing campaign content token, so the vertical appears in Calendly's supported UTM field. This context exists in server-rendered links even without JavaScript; incoming campaign preservation requires JavaScript. Booking clicks are not counted as confirmed bookings.
 

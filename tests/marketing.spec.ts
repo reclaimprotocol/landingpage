@@ -5,6 +5,9 @@ const routes = [
   { path: '/', heading: 'Verify your users’ claims.Directly from the source.', social: 'home' },
   { path: '/solutions/research', heading: 'Verify that participants actually qualify.', social: 'research' },
   { path: '/solutions/promotions', heading: 'Verify the purchase behind the claim.', social: 'promotions' },
+  { path: '/solutions/government', heading: 'Verify once. Reuse across programs.', social: 'government' },
+  { path: '/solutions/hiring', heading: 'Verify before you interview.', social: 'hiring' },
+  { path: '/solutions/student-discounts', heading: 'Something is coming.Stay curious.', social: 'student-discounts' },
 ];
 
 for (const route of routes) {
@@ -18,7 +21,8 @@ for (const route of routes) {
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', `https://reclaimprotocol.org/social-${route.social}.png`);
     expect((await request.get(`/social-${route.social}.png`)).status()).toBe(200);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    const audit = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    // YouTube owns the embedded player. Its iframe title is checked separately below.
+    const audit = await new AxeBuilder({ page }).exclude('.solution-video').withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
     expect(audit.violations).toEqual([]);
     for (const image of await page.locator('main img').all()) {
       await image.scrollIntoViewIfNeeded();
@@ -31,7 +35,7 @@ for (const route of routes) {
   });
 }
 
-test('illustration is interactive and is never counted as live verification', async ({ page }) => {
+test('hero screenshot walkthrough explains each step without recording live verification', async ({ page }) => {
   const events: Record<string, unknown>[] = [];
   await page.exposeFunction('captureMarketing', (event: Record<string, unknown>) => events.push(event));
   await page.addInitScript(() => {
@@ -40,23 +44,29 @@ test('illustration is interactive and is never counted as live verification', as
     });
   });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Preview user action' }).click();
-  await expect(page.getByRole('heading', { name: 'Connect the relevant account.' })).toBeVisible();
-  await page.getByRole('button', { name: 'Preview the result' }).click();
-  await expect(page.getByRole('heading', { name: 'Evidence to work with.' })).toBeVisible();
-  await expect(page.locator('.demo-evidence')).toContainText('13 Oct 2026');
-  await page.getByRole('button', { name: 'Replay example' }).click();
-  await expect(page.getByRole('button', { name: 'Preview user action' })).toBeVisible();
-  expect(events.map(event => event.event)).toEqual(['illustration_started', 'illustration_completed']);
+  const showcase = page.getByRole('region', { name: 'Employment verification walkthrough' });
+  await expect(page.locator('.enterprise-hero .verification-showcase')).toBeVisible();
+  await expect(showcase.getByRole('button', { name: 'Previous step' })).toBeDisabled();
+  for (const step of ['Choose the source', 'Open a verification session.', 'Login into the source', 'Finish signing in.', 'Verify cryptographically', 'See the verified result.']) {
+    await expect(showcase.getByRole('heading', { name: step, exact: true })).toBeVisible();
+    const screenshot = showcase.getByRole('img');
+    await expect(screenshot).toHaveJSProperty('complete', true);
+    expect(await screenshot.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+    if (step !== 'See the verified result.') await showcase.getByRole('button', { name: 'Next step', exact: true }).click();
+  }
+  await showcase.getByRole('button', { name: 'Previous step' }).click();
+  await expect(showcase.getByRole('heading', { name: 'Verify cryptographically' })).toBeVisible();
+  await showcase.getByRole('button', { name: 'Step 6: See the verified result.' }).click();
+  await showcase.getByRole('button', { name: 'Replay showcase' }).click();
+  await expect(showcase.getByRole('heading', { name: 'Choose the source' })).toBeVisible();
+  expect(events).toEqual([]);
 });
 
-test('result explorer keeps unavailable information separate from session failure', async ({ page }) => {
+test('result section shows the verified view', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Information unavailable', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Keep the claim unresolved.' })).toBeVisible();
-  await expect(page.locator('.result-footnote')).toContainText('does not by itself mean information was unavailable');
-  await page.getByRole('button', { name: 'Unsuccessful session', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'The session did not complete.' })).toBeVisible();
+  await expect(page.locator('.result-select')).toHaveText('Verified');
+  await expect(page.getByRole('heading', { name: 'Requested evidence is available.' })).toBeVisible();
+  await expect(page.locator('.result-record')).toContainText('Shopify account');
   const audit = await new AxeBuilder({ page }).include('.result-explorer').withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   expect(audit.violations).toEqual([]);
 });
@@ -70,7 +80,7 @@ test('promotions campaign survives navigation and booking without private query 
     });
   });
   await page.goto('/?utm_source=outreach&utm_medium=email&utm_campaign=retail-Q4&utm_content=variant-a&email=private@example.com&claim=private-claim&utm_term=private-search');
-  await page.getByRole('link', { name: 'Learn more about Promotions' }).click();
+  await page.getByRole('contentinfo').getByRole('link', { name: 'Promotions', exact: true }).click();
   await expect(page).toHaveURL(/\/solutions\/promotions\?.*utm_campaign=retail-Q4/);
   const cta = page.getByRole('link', { name: 'Test one purchase-verification flow' }).first();
   await expect(cta).toHaveAttribute('href', /utm_content=variant-a.promotions/);
@@ -110,14 +120,58 @@ test('navigation, horizontal cards, and FAQs work with keyboard controls', async
   await expect.poll(() => rail.evaluate(el => el.scrollLeft)).toBeGreaterThan(0);
   if (testInfo.project.name === 'mobile') {
     await page.locator('.mobile-menu summary').click();
-    await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Research', exact: true }).click();
+    await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Govt Services', exact: true }).click();
   } else {
-    await page.getByRole('link', { name: 'Learn more about Research' }).click();
+    await page.getByRole('link', { name: 'Learn more about Govt Services' }).click();
   }
   const question = page.locator('.faq-list summary').first();
   await question.focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('.faq-list details').first()).toHaveAttribute('open', '');
+});
+
+test('solutions follow the requested order and the gap section follows how it works', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.use-case-card h3')).toHaveText(['Govt Services', 'Hiring BGV', 'Status match', 'Student Discounts', 'Other workflows']);
+  await expect(page.locator('#how + section')).toHaveAttribute('id', 'verification-gaps');
+  const destinations = ['/solutions/government', '/solutions/hiring', '/status-match', '/solutions/student-discounts'];
+  const links = page.locator('.use-case-card .text-link');
+  for (const [i, path] of destinations.entries()) expect(new URL((await links.nth(i).getAttribute('href'))!, 'https://reclaimprotocol.org').pathname).toBe(path);
+  expect(new URL((await links.last().getAttribute('href'))!).hostname).toBe('calendly.com');
+});
+
+test('government video is below the fold and student teaser keeps the partnership unnamed', async ({ page }) => {
+  // Check the embed wiring without depending on the third-party player during local QA.
+  await page.route('https://www.youtube-nocookie.com/**', route => route.fulfill({ status: 200, contentType: 'text/html', body: '<p>Video player</p>' }));
+  await page.goto('/solutions/government');
+  const video = page.locator('#solution-video iframe');
+  await expect(video).toHaveAttribute('src', 'https://www.youtube-nocookie.com/embed/3CDvfm9DYjw');
+  await expect(video).toHaveAttribute('title', 'Plaid for Government Benefits');
+  const bounds = await video.boundingBox();
+  expect(bounds!.y).toBeGreaterThan(page.viewportSize()!.height);
+  await page.goto('/solutions/student-discounts');
+  await expect(page.locator('main')).toContainText('largest student verification company in the world');
+  await expect(page.locator('main')).toContainText('Details announcing soon.');
+  await expect(page.locator('main img, main iframe, main form')).toHaveCount(0);
+  await expect(page.locator('main')).not.toContainText(/SheerID/i);
+  await expect(page.locator('main').getByRole('link', { name: 'Talk to us' })).toHaveAttribute('href', /vertical=student-discounts&utm_content=student-discounts/);
+});
+
+test('new landing pages preserve campaign context and record their own page identity', async ({ page }) => {
+  await page.addInitScript(() => { window.dataLayer = []; });
+  for (const vertical of ['government', 'hiring', 'student-discounts']) {
+    await page.goto(`/solutions/${vertical}?utm_source=solutions&utm_campaign=launch&email=private@example.com`);
+    const cta = page.locator('main').getByRole('link', { name: 'Talk to us', exact: true }).first();
+    await expect(cta).toHaveAttribute('href', /utm_campaign=launch/);
+    const url = new URL((await cta.getAttribute('href'))!);
+    expect(url.searchParams.get('vertical')).toBe(vertical);
+    expect(url.searchParams.get('utm_campaign')).toBe('launch');
+    expect(url.toString()).not.toContain('private');
+    await page.evaluate(() => document.addEventListener('click', event => event.preventDefault()));
+    await cta.click();
+    const events = await page.evaluate(() => window.dataLayer);
+    expect(events?.at(-1)).toMatchObject({ event: 'reclaim_booking_handoff', page: vertical, vertical, utm_campaign: 'launch' });
+  }
 });
 
 test('preserves existing routes, redirects, and homepage anchors', async ({ page, request }) => {
@@ -131,10 +185,10 @@ test('preserves existing routes, redirects, and homepage anchors', async ({ page
   for (const id of ['verify', 'pricing', 'results', 'trust', 'integrate', 'pilot']) await expect(page.locator(`#${id}`)).toHaveCount(1);
 });
 
-test('booking context and page content work without JavaScript', async ({ browser }) => {
+test('booking context and page content work without JavaScript', async ({ browser, baseURL }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:3000/solutions/promotions');
+  await page.goto(`${baseURL}/solutions/promotions`);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Verify the purchase behind the claim.');
   await expect(page.getByRole('link', { name: 'Test one purchase-verification flow' }).first()).toHaveAttribute('href', /vertical=promotions&utm_content=promotions/);
   await context.close();

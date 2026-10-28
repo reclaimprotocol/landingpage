@@ -12,3 +12,11 @@ export const siteConfig = {
   privacyPolicyUrl: 'https://reclaimprotocol.notion.site/Privacy-Policy-Reclaim-Protocol-115275b816cb80ab94b8ca8616673658?pvs=4',
   termsUrl: 'https://reclaimprotocol.notion.site/Terms-of-Service-Reclaim-Protocol-13c275b816cb80b1a5ade76c6f2532dd',
 };
+
+export const solutionLinks = [
+  { label: 'Govt Services', href: '/solutions/government', vertical: 'government' },
+  { label: 'Hiring BGV', href: '/solutions/hiring', vertical: 'hiring' },
+  { label: 'Status match', href: '/status-match', vertical: 'status-match' },
+  { label: 'Student Discounts', href: '/solutions/student-discounts', vertical: 'student-discounts' },
+  { label: 'Other workflows', href: siteConfig.bookingUrl, vertical: 'other' },
+] as const;
