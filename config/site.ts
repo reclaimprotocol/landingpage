@@ -3,6 +3,7 @@ export const siteConfig = {
   trustUrl: 'https://trust.reclaimprotocol.org',
   sdkGuideUrl: 'https://docs.reclaimprotocol.org/manual/js-sdk/usage',
   bookingUrl: 'https://calendly.com/madhavanmalolan/call',
+  recruitersSignupUrl: 'https://forms.gle/EjBZpPz5v6fKBFKU6',
   docsUrl: 'https://docs.reclaimprotocol.org',
   blogUrl: 'https://blog.reclaimprotocol.org',
   apiKeysUrl: 'https://dev.reclaimprotocol.org',

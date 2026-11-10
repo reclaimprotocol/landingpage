@@ -8,6 +8,7 @@ const pages = [
   { name: 'promotions', eyebrow: 'RECLAIM FOR PROMOTIONS', lines: ['Verify the purchase'], blue: ['behind the claim.'], source: 'Retailer order history', field: 'Purchase amount', value: '$38.00 USD' },
   { name: 'government', eyebrow: 'RECLAIM FOR GOVERNMENT SERVICES', lines: ['Verify once.'], blue: ['Reuse across', 'programs.'], source: 'Applicant’s source account', field: 'Evidence', value: 'Reusable with consent' },
   { name: 'hiring', eyebrow: 'RECLAIM FOR HIRING', lines: ['Verify before'], blue: ['you interview.'], source: 'Candidate’s source account', field: 'Employment', value: 'Source-backed records' },
+  { name: 'recruiters', eyebrow: 'RECLAIM FOR RECRUITERS', lines: ['Verify key claims.'], blue: ['Before the first', 'interview.'], source: 'Candidate’s source account', field: 'Prescreening', value: 'Verified claims' },
 ];
 for (const page of pages) {
   const lines = [...page.lines, ...page.blue];

@@ -1,0 +1,25 @@
+.recruiters-workflow { padding: 30px; border: 1px solid #e1e5f6; border-radius: 16px; background: #f6f7ff; }
+.recruiters-workflow > .eyebrow { color: #555d78; margin: 0 0 28px; }
+.recruiters-workflow ol { list-style: none; padding: 0; margin: 0; }
+.recruiters-workflow li { display: flex; gap: 18px; padding: 22px 0; border-top: 1px solid #e1e5f6; }
+.recruiters-step-number { display: grid; place-items: center; flex: 0 0 34px; height: 34px; background: white; border: 1px solid #dce0f3; border-radius: 50%; font-size: 10px; color: var(--blue); }
+.enterprise-site .recruiters-workflow h2 { font-size: 20px; margin: 4px 0 9px; letter-spacing: -.025em; }
+.recruiters-workflow li p { font-size: 14px; line-height: 1.65; color: var(--ink-2); margin: 0; max-width: 37ch; }
+.recruiters-consent { display: flex; gap: 9px; align-items: center; font-size: 11px; color: #555d78; border-top: 1px solid #e1e5f6; padding-top: 22px; margin: 0; }
+.recruiters-consent svg { flex-shrink: 0; color: var(--blue); }
+.recruiters-checks { background: #fcfcff; }
+.recruiters-check-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.recruiters-check { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border: 1px solid #e1e2ed; border-radius: 12px; background: white; }
+.recruiters-check h3 { font-size: 22px; letter-spacing: -.025em; line-height: 1.2; margin: 22px 0 12px; }
+.recruiters-check > p { color: var(--ink-2); font-size: 14px; line-height: 1.65; margin: 0 0 22px; }
+.recruiters-source { margin-top: auto; padding-top: 16px; width: 100%; border-top: 1px solid var(--line); color: #62697c; font-size: 10px; line-height: 1.7; }
+@media (max-width: 900px) {
+  .recruiters-workflow { width: 100%; max-width: 670px; }
+  .recruiters-check-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .recruiters-workflow, .recruiters-check { padding: 24px; }
+  .recruiters-workflow li { gap: 14px; }
+  .recruiters-check-grid { grid-template-columns: 1fr; gap: 14px; }
+  .recruiters-check h3 { margin-top: 18px; }
+}

@@ -1,4 +1,4 @@
-export type Vertical = 'general' | 'research' | 'promotions' | 'government' | 'status-match' | 'hiring' | 'student-discounts' | 'other';
+export type Vertical = 'general' | 'research' | 'promotions' | 'government' | 'status-match' | 'hiring' | 'recruiters' | 'student-discounts' | 'other';
 export type MarketingEvent = 'cta_click' | 'demo_handoff' | 'booking_handoff' | 'illustration_started' | 'illustration_completed';
 export type Placement = 'nav' | 'hero' | 'use_case' | 'workflow' | 'pricing' | 'footer' | 'final' | 'illustration';
 
@@ -49,6 +49,7 @@ export function currentHref(href: string, vertical: Vertical, booking = false) {
 }
 
 const solutionPages = {
+  '/recruiters': 'recruiters',
   '/solutions/research': 'research',
   '/solutions/promotions': 'promotions',
   '/solutions/government': 'government',
