@@ -132,9 +132,9 @@ test('navigation, horizontal cards, and FAQs work with keyboard controls', async
 
 test('solutions follow the requested order and the gap section follows how it works', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('.use-case-card h3')).toHaveText(['Govt Services', 'Hiring BGV', 'Status match', 'Student Discounts', 'Other workflows']);
+  await expect(page.locator('.use-case-card h3')).toHaveText(['Govt Services', 'Hiring BGV', 'Recruiters', 'Status match', 'Student Discounts', 'Other workflows']);
   await expect(page.locator('#how + section')).toHaveAttribute('id', 'verification-gaps');
-  const destinations = ['/solutions/government', '/solutions/hiring', '/status-match', '/solutions/student-discounts'];
+  const destinations = ['/solutions/government', '/solutions/hiring', '/recruiters', '/status-match', '/solutions/student-discounts'];
   const links = page.locator('.use-case-card .text-link');
   for (const [i, path] of destinations.entries()) expect(new URL((await links.nth(i).getAttribute('href'))!, 'https://reclaimprotocol.org').pathname).toBe(path);
   expect(new URL((await links.last().getAttribute('href'))!).hostname).toBe('calendly.com');
